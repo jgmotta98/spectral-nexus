@@ -14,6 +14,7 @@ const Home = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const [sliderValue, setSliderValue] = useState(25);
     const [loading, setLoading] = useState(false);
+    const apiUrl = process.env.REACT_APP_API_URL
 
     const handleFileSelect = (selectedFile) => {
         setFile(selectedFile);
@@ -47,7 +48,7 @@ const Home = () => {
         formData.append('sliderValue', sliderValue);
 
         try {
-            const response = await fetch('http://localhost:5000/api/data', {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 body: formData,
             });
