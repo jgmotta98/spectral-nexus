@@ -156,7 +156,6 @@ def receive_data():
         print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
         #print(components_data_filter)
         #print(input_list_dict)
-        # Clean up the temporary file
         os.remove(file_path)
 
         response = {
