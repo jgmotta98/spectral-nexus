@@ -1,0 +1,26 @@
+{
+    "builds": [
+      {
+        "src": "API/app.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "src/main.jsx",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "API/app.py"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
