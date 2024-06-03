@@ -96,7 +96,10 @@ def convert_to_dict(data_list: list[dict[str, pd.DataFrame]]) -> dict[str, pd.Da
 
 @app.route('/api/data', methods=['POST'])
 def receive_data():
-    # Get form data
+    form_data = request.form
+    response_data = {'message': 'Data received successfully', 'form_data': form_data}
+    return jsonify(response_data)
+    '''# Get form data
     textBoxValue = request.form['textBoxValue']
     isToggled = request.form['isToggled'] == 'true'
     selectedOption = request.form['selectedOption']
@@ -167,7 +170,7 @@ def receive_data():
     else:
         response = {'status': 'error', 'message': 'Invalid file format'}
 
-    return jsonify(response), 200
+    return jsonify(response), 200'''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
