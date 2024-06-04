@@ -1,16 +1,16 @@
 // src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Topbar from './Topbar';
 import Home from './pages/Home';
 import Report from './pages/Report';
 import './App.css';
 
 const App = () => {
   return (
-    <div className="App" style={{ display: 'flex' }}>
-      <Sidebar />
-      <div style={{ marginLeft: '250px', padding: '20px', width: 'calc(100% - 250px)', height: '100vh' }}>
+    <div className="App" style={{ paddingTop: '0px' }}>
+    <Topbar />
+        <div style={{ padding: '0px', width: '100%', height: 'calc(70vh)' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/report" element={<Report />} />
