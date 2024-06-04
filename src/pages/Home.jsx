@@ -13,7 +13,7 @@ const Home = () => {
     const [file, setFile] = useState(null);
     const [textBoxValue, setTextBoxValue] = useState("");
     const [isToggled, setIsToggled] = useState(true);
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState("1");
     const [sliderValue, setSliderValue] = useState(25);
     const [loading, setLoading] = useState(false);
     const [lambda_, setLambda] = useState('100');

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
@@ -7,11 +7,12 @@ import sqlite3
 import multiprocessing as mp
 from collections import OrderedDict
 import time
-from contextlib import asynccontextmanager
+from contextvars import ContextVar
 
 from band_filter import get_spectra_filtered_list
 from input_manipulation import input_baseline_correction
 from similarity_algorithm import local_algorithm
+from generate_report import create_graph
 
 app = FastAPI()
 
@@ -36,6 +37,37 @@ class FormData(BaseModel):
     lambda_: int
     poder: int
     maxiter: int
+
+
+home_info_context: ContextVar[dict] = ContextVar('home_info', default={
+    "textBoxValue": "",
+    "isToggled": False,
+    "selectedOption": "",
+    "sliderValue": 25,
+    "lambda_": 100,
+    "porder": 1,
+    "maxiter": 15
+})
+
+report_info_context: ContextVar[dict] = ContextVar('report_info', default={
+    "components_data_filter": None,
+    "input_list_dict": None,
+    "spectral_list": None,
+    "input_df": None,
+    "final_result": None,
+    "textBoxValue": "",
+    "isToggled": False,
+    "sliderValue": 0,
+    "selectedOption": ""
+})
+
+
+def get_home_info_context():
+    return home_info_context.get()
+
+
+def get_report_info_context():
+    return report_info_context.get()
 
 
 def get_unique_spectral_names(db_path: str) -> list:
@@ -112,26 +144,14 @@ def convert_to_dict(data_list: list[dict[str, pd.DataFrame]]) -> dict[str, pd.Da
     return result_dict
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    if not os.path.exists(HOME_DB_PATH):
-        with sqlite3.connect(HOME_DB_PATH) as conn:
-            conn.execute('''
-            CREATE TABLE IF NOT EXISTS home_info (
-                id INTEGER PRIMARY KEY,
-                textBoxValue TEXT NOT NULL,
-                isToggled BOOLEAN NOT NULL,
-                selectedOption TEXT NOT NULL,
-                sliderValue INTEGER NOT NULL,
-                lambda_ INTEGER NOT NULL,
-                porder INTEGER NOT NULL,
-                maxiter INTEGER NOT NULL
-            )
-            ''')
-    yield
+def convert_json_to_dataframes(report_info):
+    components_data_filter = {k: pd.DataFrame(v) for k, v in report_info["components_data_filter"].items()}
+    input_list_dict = {k: pd.DataFrame(v) for k, v in report_info["input_list_dict"].items()}
+    spectral_list = [pd.DataFrame(data) for data in report_info["spectral_list"]]
+    input_df = pd.DataFrame(report_info["input_df"])
+    final_result = report_info["final_result"]
 
-
-app.router.lifespan_context = lifespan
+    return components_data_filter, input_list_dict, spectral_list, input_df, final_result
 
 
 @app.post('/api/data')
@@ -144,6 +164,8 @@ async def receive_data(
     porder: int = Form(...),
     maxiter: int = Form(...),
     file: UploadFile = File(...),
+    home_info = Depends(get_home_info_context),
+    report_info = Depends(get_report_info_context)
 ):
     print(file)
     if not file.filename.endswith('.csv'):
@@ -158,21 +180,16 @@ async def receive_data(
 
     start_time = time.perf_counter()
 
-    with sqlite3.connect(HOME_DB_PATH) as conn:
-        conn.execute("DELETE FROM home_info")
-
-        conn.execute("""
-            INSERT INTO home_info (textBoxValue, isToggled, selectedOption, sliderValue, lambda_, porder, maxiter) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (
-            textBoxValue, 
-            isToggled, 
-            selectedOption, 
-            sliderValue, 
-            lambda_, 
-            porder, 
-            maxiter
-        ))
+    home_info.update({
+        "textBoxValue": textBoxValue,
+        "isToggled": isToggled,
+        "selectedOption": selectedOption,
+        "sliderValue": sliderValue,
+        "lambda_": lambda_,
+        "porder": porder,
+        "maxiter": maxiter
+    })
+    home_info_context.set(home_info)
 
     input_df = pd.read_csv(file_path, sep=';')
     unique_names = get_unique_spectral_names(SPECTRAL_DB_PATH)
@@ -209,6 +226,27 @@ async def receive_data(
     components_data_filter: dict[str, pd.DataFrame] = convert_to_dict(components_data_filter_list)
     input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
 
+    print(components_data_filter)
+    print(input_list_dict)
+    print(spectral_list)
+    print(input_df)
+    print(final_result)
+
+    report_info.update({
+        "components_data_filter": {k: v.to_dict() for k, v in components_data_filter.items()},
+        "input_list_dict": {k: v.to_dict() for k, v in input_list_dict.items()},
+        "spectral_list": [df.to_dict() for df in spectral_list],
+        "input_df": input_df.to_dict(),
+        "final_result": final_result,
+        "textBoxValue": textBoxValue,
+        "isToggled": isToggled,
+        "sliderValue": sliderValue,
+        "selectedOption": selectedOption
+    })
+    report_info_context.set(report_info)
+
+    print(report_info)
+
     print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
     os.remove(file_path)
 
@@ -216,29 +254,19 @@ async def receive_data(
 
     return response
 
-@app.get("/api/data")
-def get_home_info():
-    with sqlite3.connect(HOME_DB_PATH) as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT textBoxValue, isToggled, selectedOption, sliderValue, lambda_, porder, maxiter FROM home_info ORDER BY id DESC LIMIT 1")
-        row = cursor.fetchone()
-    if row:
-        return {
-            "textBoxValue": row[0],
-            "isToggled": row[1],
-            "selectedOption": row[2],
-            "sliderValue": row[3],
-            "lambda_": row[4],
-            "porder": row[5],
-            "maxiter": row[6]
-        }
-    else:
-        return {
-            "textBoxValue": "",
-            "isToggled": False,
-            "selectedOption": "",
-            "sliderValue": 25,
-            "lambda_": 100,
-            "porder": 1,
-            "maxiter": 15
-        }
+
+'''@app.post('/api/report')
+async def generate_report():
+    create_graph(components_data_filter, input_list_dict, spectral_list, input_df, final_result, 
+                 UserInput.ANALYSIS_COMPOUND_NAME, UserInput.OUTPUT_PDF, UserInput.BAND_DISTANCE_CHECK, UserInput.CPU_CORES)
+
+'''
+
+@app.get('/api/data')
+def get_home_info(home_info = Depends(get_home_info_context)):
+    return home_info
+
+
+@app.get('/api/report')
+def get_report_info(report_info = Depends(get_report_info_context)):
+    return report_info
