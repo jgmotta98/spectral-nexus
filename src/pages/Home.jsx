@@ -5,6 +5,7 @@ import TextBox from '../components/TextBox';
 import ToggleSwitch from '../components/ToggleSwitch';
 import ComboBox from '../components/ComboBox';
 import SliderComponent from '../components/Slider';
+import NumberInput from '../components/NumberInput';
 import '../App.css';
 
 const Home = () => {
@@ -14,7 +15,10 @@ const Home = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const [sliderValue, setSliderValue] = useState(25);
     const [loading, setLoading] = useState(false);
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const [lambda_, setLambda] = useState('100');
+    const [porder, setPorder] = useState('1');
+    const [maxiter, setMaxIter] = useState('15');
+    const apiUrl = 'http://127.0.0.1:8000/api/data';
 
     const handleFileSelect = (selectedFile) => {
         setFile(selectedFile);
@@ -37,6 +41,18 @@ const Home = () => {
       setSliderValue(value);
     };
 
+    const handleNumberChange1 = (value) => {
+        setLambda(value);
+    };
+
+    const handleNumberChange2 = (value) => {
+        setPorder(value);
+    };
+
+    const handleNumberChange3 = (value) => {
+        setMaxIter(value);
+    };
+
     const sendDataToBackend = async () => {
         setLoading(true);
 
@@ -46,6 +62,9 @@ const Home = () => {
         formData.append('isToggled', isToggled);
         formData.append('selectedOption', selectedOption);
         formData.append('sliderValue', sliderValue);
+        formData.append('lambda_', lambda_);
+        formData.append('porder', porder);
+        formData.append('maxiter', maxiter);
 
         try {
             const response = await fetch(apiUrl, {
@@ -74,6 +93,9 @@ const Home = () => {
             <ToggleSwitch isToggled={isToggled} onToggle={handleToggleChange} />
             <ComboBox selectedOption={selectedOption} onSelectChange={handleComboBoxChange} />
             <SliderComponent value={sliderValue} onChange={handleSliderChange} />
+            <NumberInput value={lambda_} onChange={handleNumberChange1} /> {/* First NumberInput */}
+            <NumberInput value={porder} onChange={handleNumberChange2} /> {/* Second NumberInput */}
+            <NumberInput value={maxiter} onChange={handleNumberChange3} /> {/* Third NumberInput */}
             <button onClick={sendDataToBackend}>Analisar composto</button>
             {loading && (
                 <div className="loading-overlay">

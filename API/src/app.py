@@ -1,6 +1,7 @@
 # backend/app.py
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 import pandas as pd
 import os
 import sqlite3
@@ -8,16 +9,32 @@ import multiprocessing as mp
 from collections import OrderedDict
 import time
 
-from src.band_filter import get_spectra_filtered_list
-from src.input_manipulation import input_baseline_correction
-from src.similarity_algorithm import local_algorithm
+from band_filter import get_spectra_filtered_list
+from input_manipulation import input_baseline_correction
+from similarity_algorithm import local_algorithm
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_FOLDER = '../uploads'
 SPECTRAL_DB_PATH = '../database/spectral_database.db'
+
+
+class FormData(BaseModel):
+    textBoxValue: str
+    isToggled: bool
+    selectedOption: str
+    sliderValue: int
+    lambda_: int
+    poder: int
+    maxiter: int
 
 
 def get_unique_spectral_names(db_path: str) -> list:
@@ -94,83 +111,76 @@ def convert_to_dict(data_list: list[dict[str, pd.DataFrame]]) -> dict[str, pd.Da
     return result_dict
 
 
-@app.route('/api/data', methods=['POST'])
-def receive_data():
-    form_data = request.form
-    response_data = {'message': 'Data received successfully', 'form_data': form_data}
-    return jsonify(response_data)
-    '''# Get form data
-    textBoxValue = request.form['textBoxValue']
-    isToggled = request.form['isToggled'] == 'true'
-    selectedOption = request.form['selectedOption']
-    sliderValue = request.form['sliderValue']
+@app.post('/api/data')
+async def receive_data(
+    textBoxValue: str = Form(...),
+    isToggled: bool = Form(...),
+    selectedOption: str = Form(...),
+    sliderValue: int = Form(...),
+    lambda_: int = Form(...),
+    porder: int = Form(...),
+    maxiter: int = Form(...),
+    file: UploadFile = File(...),
+):
+    if not file.filename.endswith('.csv'):
+        raise HTTPException(status_code=400, detail="Invalid file format")
 
-    sliderValue = int(sliderValue)
+    # Ensure the uploads directory exists
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
 
-    # Get the file from the request
-    file = request.files['file']
-    
-    if file and file.filename.endswith('.csv'):
-        # Ensure the uploads directory exists
-        if not os.path.exists(UPLOAD_FOLDER):
-            os.makedirs(UPLOAD_FOLDER)
+    # Save the file to a temporary location
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    with open(file_path, "wb") as buffer:
+        buffer.write(file.file.read())
 
-        # Save the file to a temporary location
-        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(file_path)
+    start_time = time.perf_counter()
 
-        start_time = time.perf_counter()
+    input_df = pd.read_csv(file_path, sep=';')
+    unique_names = get_unique_spectral_names(SPECTRAL_DB_PATH)
 
-        input_df = pd.read_csv(file_path, sep=';')
-        unique_names = get_unique_spectral_names(SPECTRAL_DB_PATH)
+    spectral_input = input_baseline_correction([textBoxValue, input_df], lambda_, porder, maxiter)
+    spectral_filtered_input = get_spectra_filtered_list(spectral_input, sliderValue)
 
-        spectral_input = input_baseline_correction([textBoxValue, input_df])
-        spectral_filtered_input = get_spectra_filtered_list(spectral_input, sliderValue)
-
-        if isToggled:
-            cores = int(selectedOption)
-            with mp.Pool(processes=cores) as pool:
-                result_list = pool.map(parallelization_process, [(name, spectral_filtered_input, SPECTRAL_DB_PATH, 
-                                                                sliderValue) for name in unique_names])
-        else:
-            result_list: list[dict[str, float]] = []
-            for name in unique_names:
-                spectral_data = fetch_spectral_data(SPECTRAL_DB_PATH, name)
-
-                # Filtering
-                spectral_filtered_database = get_spectra_filtered_list(spectral_data, sliderValue)
-                
-                # Authoral Algorithm
-                result_dict = local_algorithm(spectral_filtered_database, spectral_filtered_input, get_dataframe=False)
-
-                result_list.append(result_dict)
-
-        final_result = order_result_dict(result_list)
-        spectral_list = [fetch_spectral_data(SPECTRAL_DB_PATH, spectra) for spectra in final_result.keys()]
-
-        print(final_result)
-
-        components_data_filter_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=False)
-        input_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=True)
-        
-        components_data_filter: dict[str, pd.DataFrame] = convert_to_dict(components_data_filter_list)
-        input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
-
-        print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
-        #print(components_data_filter)
-        #print(input_list_dict)
-        os.remove(file_path)
-
-        response = {
-            'status': 'success',
-            'textBoxValue': textBoxValue,
-            'isToggled': isToggled,
-            'selectedOption': selectedOption
-        }
+    if isToggled:
+        cores = int(selectedOption)
+        with mp.Pool(processes=cores) as pool:
+            result_list = pool.map(parallelization_process, [(name, spectral_filtered_input, SPECTRAL_DB_PATH, 
+                                                            sliderValue) for name in unique_names])
     else:
-        response = {'status': 'error', 'message': 'Invalid file format'}
+        result_list: list[dict[str, float]] = []
+        for name in unique_names:
+            spectral_data = fetch_spectral_data(SPECTRAL_DB_PATH, name)
 
-    return jsonify(response), 200'''
+            # Filtering
+            spectral_filtered_database = get_spectra_filtered_list(spectral_data, sliderValue)
+            
+            # Authoral Algorithm
+            result_dict = local_algorithm(spectral_filtered_database, spectral_filtered_input, get_dataframe=False)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+            result_list.append(result_dict)
+
+    final_result = order_result_dict(result_list)
+    spectral_list = [fetch_spectral_data(SPECTRAL_DB_PATH, spectra) for spectra in final_result.keys()]
+
+    print(final_result)
+
+    components_data_filter_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=False)
+    input_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=True)
+    
+    components_data_filter: dict[str, pd.DataFrame] = convert_to_dict(components_data_filter_list)
+    input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
+
+    print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
+    #print(components_data_filter)
+    #print(input_list_dict)
+    os.remove(file_path)
+
+    response = {
+        'status': 'success',
+        'textBoxValue': textBoxValue,
+        'isToggled': isToggled,
+        'selectedOption': selectedOption
+    }
+
+    return response

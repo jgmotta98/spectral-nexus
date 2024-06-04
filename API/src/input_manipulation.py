@@ -59,12 +59,14 @@ def airPLS(x: list[float], lambda_: int = 100,
     return z
 
 
-def input_baseline_correction(spectra_input: list[str, pd.DataFrame]) -> pd.DataFrame:
+def input_baseline_correction(spectra_input: list[str, pd.DataFrame], lambda_: int = 100, 
+                              porder: int = 1, itermax: int = 15) -> pd.DataFrame:
     spectra_input[1].insert(0, 'name', spectra_input[0])
     spectra_input = spectra_input[1]
     
     spectra_input['y'] = 2 - np.log10(spectra_input['y'])
-    c1=np.array(spectra_input['y'].tolist())-airPLS(np.array(spectra_input['y'].tolist()))
+    c1=np.array(spectra_input['y'].tolist())-airPLS(np.array(spectra_input['y'].tolist()), 
+                                                    lambda_, porder, itermax)
     
     c1 = 10**(-c1) * 100
     spectra_input['y'] = c1.tolist()
