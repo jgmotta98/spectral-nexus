@@ -1,4 +1,3 @@
-# backend/app.py
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -8,6 +7,7 @@ import sqlite3
 import multiprocessing as mp
 from collections import OrderedDict
 import time
+from contextlib import asynccontextmanager
 
 from band_filter import get_spectra_filtered_list
 from input_manipulation import input_baseline_correction
@@ -25,7 +25,8 @@ app.add_middleware(
 
 UPLOAD_FOLDER = '../uploads'
 SPECTRAL_DB_PATH = '../database/spectral_database.db'
-
+HOME_DB_PATH = '../database/home_database.db'
+REPORT_DB_PATH = '../database/report_database.db'
 
 class FormData(BaseModel):
     textBoxValue: str
@@ -111,6 +112,28 @@ def convert_to_dict(data_list: list[dict[str, pd.DataFrame]]) -> dict[str, pd.Da
     return result_dict
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    if not os.path.exists(HOME_DB_PATH):
+        with sqlite3.connect(HOME_DB_PATH) as conn:
+            conn.execute('''
+            CREATE TABLE IF NOT EXISTS home_info (
+                id INTEGER PRIMARY KEY,
+                textBoxValue TEXT NOT NULL,
+                isToggled BOOLEAN NOT NULL,
+                selectedOption TEXT NOT NULL,
+                sliderValue INTEGER NOT NULL,
+                lambda_ INTEGER NOT NULL,
+                porder INTEGER NOT NULL,
+                maxiter INTEGER NOT NULL
+            )
+            ''')
+    yield
+
+
+app.router.lifespan_context = lifespan
+
+
 @app.post('/api/data')
 async def receive_data(
     textBoxValue: str = Form(...),
@@ -122,19 +145,34 @@ async def receive_data(
     maxiter: int = Form(...),
     file: UploadFile = File(...),
 ):
+    print(file)
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Invalid file format")
 
-    # Ensure the uploads directory exists
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
 
-    # Save the file to a temporary location
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
     with open(file_path, "wb") as buffer:
         buffer.write(file.file.read())
 
     start_time = time.perf_counter()
+
+    with sqlite3.connect(HOME_DB_PATH) as conn:
+        conn.execute("DELETE FROM home_info")
+
+        conn.execute("""
+            INSERT INTO home_info (textBoxValue, isToggled, selectedOption, sliderValue, lambda_, porder, maxiter) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            textBoxValue, 
+            isToggled, 
+            selectedOption, 
+            sliderValue, 
+            lambda_, 
+            porder, 
+            maxiter
+        ))
 
     input_df = pd.read_csv(file_path, sep=';')
     unique_names = get_unique_spectral_names(SPECTRAL_DB_PATH)
@@ -172,15 +210,35 @@ async def receive_data(
     input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
 
     print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
-    #print(components_data_filter)
-    #print(input_list_dict)
     os.remove(file_path)
 
-    response = {
-        'status': 'success',
-        'textBoxValue': textBoxValue,
-        'isToggled': isToggled,
-        'selectedOption': selectedOption
-    }
+    response = {'status': 'success'}
 
     return response
+
+@app.get("/api/data")
+def get_home_info():
+    with sqlite3.connect(HOME_DB_PATH) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT textBoxValue, isToggled, selectedOption, sliderValue, lambda_, porder, maxiter FROM home_info ORDER BY id DESC LIMIT 1")
+        row = cursor.fetchone()
+    if row:
+        return {
+            "textBoxValue": row[0],
+            "isToggled": row[1],
+            "selectedOption": row[2],
+            "sliderValue": row[3],
+            "lambda_": row[4],
+            "porder": row[5],
+            "maxiter": row[6]
+        }
+    else:
+        return {
+            "textBoxValue": "",
+            "isToggled": False,
+            "selectedOption": "",
+            "sliderValue": 25,
+            "lambda_": 100,
+            "porder": 1,
+            "maxiter": 15
+        }

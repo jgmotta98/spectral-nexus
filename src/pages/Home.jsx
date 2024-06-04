@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FileSearch from '../components/FileSearch';
 import TextBox from '../components/TextBox';
 import ToggleSwitch from '../components/ToggleSwitch';
@@ -19,10 +20,33 @@ const Home = () => {
     const [porder, setPorder] = useState('1');
     const [maxiter, setMaxIter] = useState('15');
     const apiUrl = 'http://127.0.0.1:8000/api/data';
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem('analysisDone', 'false');
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                setTextBoxValue(data.textBoxValue);
+                setIsToggled(data.isToggled);
+                setSelectedOption(data.selectedOption);
+                setSliderValue(data.sliderValue);
+                setLambda(data.lambda_);
+                setPorder(data.porder);
+                setMaxIter(data.maxiter);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const handleFileSelect = (selectedFile) => {
         setFile(selectedFile);
-        setTextBoxValue(selectedFile.name);
+        setTextBoxValue(selectedFile.name.replace('.csv', ''));
     };
 
     const handleTextBoxChange = (value) => {
@@ -78,6 +102,10 @@ const Home = () => {
 
             const data = await response.json();
             console.log('Data received from backend:', data);
+
+            localStorage.setItem('analysisDone', 'true');
+
+            navigate('/report');
         } catch (error) {
             console.error('Error sending data:', error);
         } finally {

@@ -1,8 +1,16 @@
-// src/pages/Home.jsx
 import React from 'react';
+import InteractiveGraph from '../components/InteractiveGraph';
+import './Report.css';
 
-const Home = () => {
-  return <div>Report Page</div>;
-}
+const Report = () => {
+  return (
+    <div className="report-container">
+      <h1>Report Page</h1>
+      <div className="chart-wrapper">
+        <InteractiveGraph />
+      </div>
+    </div>
+  );
+};
 
-export default Home;
+export default Report;

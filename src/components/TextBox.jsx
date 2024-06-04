@@ -13,7 +13,7 @@ const TextBox = ({ value, onChange }) => {
                 type="text"
                 value={value}
                 onChange={handleInputChange}
-                placeholder="Enter text here"
+                placeholder="Name"
             />
         </div>
     );
