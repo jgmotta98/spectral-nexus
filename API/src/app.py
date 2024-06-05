@@ -253,7 +253,6 @@ async def receive_data(
 @app.post('/api/report')
 async def download_report(report_info = Depends(get_report_info_context)):
     components_data_filter, input_list_dict, spectral_list, input_df, final_result = convert_json_to_dataframes(report_info)
-    print(input_df)
     output = os.path.join(UPLOAD_FOLDER, 'report.pdf')
     create_graph(components_data_filter, input_list_dict, spectral_list, input_df, final_result, 
                  report_info['textBoxValue'], UPLOAD_FOLDER, report_info['sliderValue'], int(report_info['selectedOption']))

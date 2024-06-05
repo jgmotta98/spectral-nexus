@@ -12,7 +12,7 @@ import '../App.css';
 const Home = () => {
     const [file, setFile] = useState(null);
     const [textBoxValue, setTextBoxValue] = useState("");
-    const [isToggled, setIsToggled] = useState(true);
+    const [isToggled, setIsToggled] = useState(false);
     const [selectedOption, setSelectedOption] = useState("1");
     const [sliderValue, setSliderValue] = useState(25);
     const [loading, setLoading] = useState(false);

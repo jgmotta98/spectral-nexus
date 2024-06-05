@@ -49,9 +49,6 @@ const Report = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(selectedInputListData)
-  console.log(selectedInputListSpectra)
-
   return (
     <div className="report-container">
       <Select 
@@ -68,7 +65,7 @@ const Report = () => {
         componentSpectra={selectedComponentSpectra}
         inputSpectra={selectedInputListSpectra}
       />
-      <button onClick={handleReportDownload}>Download Report</button>
+      <button onClick={handleReportDownload}>Download Relatório</button>
       {loading && (
         <div className="loading-overlay">
           <div className="spinner"></div>

@@ -58,13 +58,13 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
         width: 1100,
         height: 500,
         xaxis: {
-          title: 'Wavelength (cm⁻¹)',
+          title: 'Número de onda (cm⁻¹)',
           range: [4000, 400],
           automargin: true,
           showgrid: false,
         },
         yaxis: {
-          title: 'Transmittance (%)',
+          title: 'Transmitância (%)',
           range: [0, 100],
           automargin: true,
           showgrid: false,
