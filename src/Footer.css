@@ -1,0 +1,26 @@
+.footer {
+width: 100%;
+padding: 1rem 0;
+text-align: center;
+position: fixed;
+bottom: 0;
+left: 0;
+}
+  
+.footer-separator {
+width: 95%;
+height: 1px;
+background-color: #3f3f3f;
+margin: 0 auto 1rem auto;
+}
+
+.container {
+max-width: 1140px;
+margin: 0 auto;
+}
+
+.footer p {
+margin: 0.2rem 0;
+color: #6c757d;
+}
+  

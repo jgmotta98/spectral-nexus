@@ -1,9 +1,9 @@
-// src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Topbar from './Topbar';
 import Home from './pages/Home';
 import Report from './pages/Report';
+import Footer from './Footer';
 import './App.css';
 
 const App = () => {
@@ -16,6 +16,7 @@ const App = () => {
           <Route path="/report" element={<Report />} />
         </Routes>
       </div>
+    <Footer />
     </div>
   );
 }

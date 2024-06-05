@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, File, UploadFile, Form, HTTPException, Depends
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Depends
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -44,7 +44,7 @@ class FormData(BaseModel):
 home_info_context: ContextVar[dict] = ContextVar('home_info', default={
     "textBoxValue": "",
     "isToggled": False,
-    "selectedOption": "",
+    "selectedOption": "1",
     "sliderValue": 25,
     "lambda_": 100,
     "porder": 1,
@@ -253,7 +253,8 @@ async def download_report(report_info = Depends(get_report_info_context)):
     output = os.path.join(UPLOAD_FOLDER, 'report.pdf')
     create_graph(components_data_filter, input_list_dict, spectral_list, input_df, final_result, 
                  report_info['textBoxValue'], UPLOAD_FOLDER, report_info['sliderValue'], int(report_info['selectedOption']))
-    return FileResponse(output, media_type='application/pdf', filename=output)
+    
+    return FileResponse(output, media_type='application/pdf', filename='report.pdf')
 
 
 @app.get('/api/data')
