@@ -149,8 +149,8 @@ def convert_to_dict(data_list: list[dict[str, pd.DataFrame]]) -> dict[str, pd.Da
 def convert_json_to_dataframes(report_info):
     components_data_filter = {k: pd.DataFrame(v) for k, v in report_info["components_data_filter"].items()}
     input_list_dict = {k: pd.DataFrame(v) for k, v in report_info["input_list_dict"].items()}
-    spectral_list = [pd.DataFrame(data) for data in report_info["spectral_list"]]
-    input_df = pd.DataFrame(report_info["input_df"])
+    spectral_list = [pd.DataFrame(data) for data in report_info["spectral_list"].values()]
+    input_df = pd.DataFrame([v for v in report_info["input_df"].values()][0])
     final_result = report_info["final_result"]
 
     return components_data_filter, input_list_dict, spectral_list, input_df, final_result
@@ -225,12 +225,15 @@ async def receive_data(
     
     components_data_filter: dict[str, pd.DataFrame] = convert_to_dict(components_data_filter_list)
     input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
-
+    
+    input_df = {v.iloc[0, 0]: v for v in [input_df]}
+    spectral_list = {v.iloc[0, 0]: v for v in spectral_list}
+    
     report_info.update({
         "components_data_filter": {k: v.to_dict() for k, v in components_data_filter.items()},
         "input_list_dict": {k: v.to_dict() for k, v in input_list_dict.items()},
-        "spectral_list": [df.to_dict() for df in spectral_list],
-        "input_df": input_df.to_dict(),
+        "spectral_list": {k: v.to_dict() for k, v in spectral_list.items()},
+        "input_df": {k: v.to_dict() for k, v in input_df.items()},
         "final_result": final_result,
         "textBoxValue": textBoxValue,
         "isToggled": isToggled,
@@ -250,6 +253,7 @@ async def receive_data(
 @app.post('/api/report')
 async def download_report(report_info = Depends(get_report_info_context)):
     components_data_filter, input_list_dict, spectral_list, input_df, final_result = convert_json_to_dataframes(report_info)
+    print(input_df)
     output = os.path.join(UPLOAD_FOLDER, 'report.pdf')
     create_graph(components_data_filter, input_list_dict, spectral_list, input_df, final_result, 
                  report_info['textBoxValue'], UPLOAD_FOLDER, report_info['sliderValue'], int(report_info['selectedOption']))

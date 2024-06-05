@@ -5,6 +5,7 @@ import './Report.css';
 
 const Report = () => {
   const [finalResult, setFinalResult] = useState({});
+  const [reportData, setReportData] = useState(null);
   const [selectedKey, setSelectedKey] = useState(null);
   const [loading, setLoading] = useState(false);
   const apiUrl = 'http://127.0.0.1:8000/api/report';
@@ -37,12 +38,36 @@ const Report = () => {
 
   const options = Object.keys(finalResult).map((key) => ({ value: key, label: key }));
 
+  const selectedInput = reportData?.textBoxValue || {};
+  const selectedComponentData = reportData?.components_data_filter?.[selectedKey] || {};
+  const selectedInputListData = reportData?.input_list_dict?.[selectedKey] || {};
+  const selectedComponentSpectra = reportData?.spectral_list?.[selectedKey] || {};
+  const selectedInputListSpectra = reportData?.input_df?.[selectedInput] || {};
+  
+
+  if (!selectedKey) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(selectedInputListData)
+  console.log(selectedInputListSpectra)
+
   return (
     <div className="report-container">
-      <h1>Report Page</h1>
-      <Select options={options} onChange={(option) => setSelectedKey(option.value)} />
-      {selectedKey && <h3>{selectedKey}: {finalResult[selectedKey]}</h3>}
-      <InteractiveGraph />
+      <Select 
+        options={options} 
+        value={options.find(option => option.value === selectedKey)} 
+        onChange={(option) => setSelectedKey(option.value)} 
+      />
+      {selectedKey && <h3>{selectedKey}: {(finalResult[selectedKey]).toFixed(2)}%</h3>}
+      <InteractiveGraph 
+        selectedCompound={selectedKey}
+        selectedInput={selectedInput}
+        componentData={selectedComponentData} 
+        inputListData={selectedInputListData}
+        componentSpectra={selectedComponentSpectra}
+        inputSpectra={selectedInputListSpectra}
+      />
       <button onClick={handleReportDownload}>Download Report</button>
       {loading && (
         <div className="loading-overlay">
