@@ -109,7 +109,7 @@ const Home = () => {
         } catch (error) {
             console.error('Error sending data:', error);
         } finally {
-            setLoading(false); // Set loading state to false
+            setLoading(false);
         }
     };
 

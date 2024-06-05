@@ -1,4 +1,5 @@
-from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Depends
+from fastapi import FastAPI, Request, File, UploadFile, Form, HTTPException, Depends
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
@@ -8,6 +9,7 @@ import multiprocessing as mp
 from collections import OrderedDict
 import time
 from contextvars import ContextVar
+import json
 
 from band_filter import get_spectra_filtered_list
 from input_manipulation import input_baseline_correction
@@ -50,11 +52,11 @@ home_info_context: ContextVar[dict] = ContextVar('home_info', default={
 })
 
 report_info_context: ContextVar[dict] = ContextVar('report_info', default={
-    "components_data_filter": None,
-    "input_list_dict": None,
-    "spectral_list": None,
-    "input_df": None,
-    "final_result": None,
+    "components_data_filter": [],
+    "input_list_dict": [],
+    "spectral_list": [],
+    "input_df": [],
+    "final_result": [],
     "textBoxValue": "",
     "isToggled": False,
     "sliderValue": 0,
@@ -218,19 +220,11 @@ async def receive_data(
     final_result = order_result_dict(result_list)
     spectral_list = [fetch_spectral_data(SPECTRAL_DB_PATH, spectra) for spectra in final_result.keys()]
 
-    print(final_result)
-
     components_data_filter_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=False)
     input_list = get_filtered_data(spectral_list, sliderValue, spectral_filtered_input, get_input=True)
     
     components_data_filter: dict[str, pd.DataFrame] = convert_to_dict(components_data_filter_list)
     input_list_dict: dict[str, pd.DataFrame] = convert_to_dict(input_list)
-
-    print(components_data_filter)
-    print(input_list_dict)
-    print(spectral_list)
-    print(input_df)
-    print(final_result)
 
     report_info.update({
         "components_data_filter": {k: v.to_dict() for k, v in components_data_filter.items()},
@@ -245,8 +239,6 @@ async def receive_data(
     })
     report_info_context.set(report_info)
 
-    print(report_info)
-
     print(f'Extraction and filtering: {time.perf_counter() - start_time} seconds.')
     os.remove(file_path)
 
@@ -255,12 +247,14 @@ async def receive_data(
     return response
 
 
-'''@app.post('/api/report')
-async def generate_report():
+@app.post('/api/report')
+async def download_report(report_info = Depends(get_report_info_context)):
+    components_data_filter, input_list_dict, spectral_list, input_df, final_result = convert_json_to_dataframes(report_info)
+    output = os.path.join(UPLOAD_FOLDER, 'report.pdf')
     create_graph(components_data_filter, input_list_dict, spectral_list, input_df, final_result, 
-                 UserInput.ANALYSIS_COMPOUND_NAME, UserInput.OUTPUT_PDF, UserInput.BAND_DISTANCE_CHECK, UserInput.CPU_CORES)
+                 report_info['textBoxValue'], UPLOAD_FOLDER, report_info['sliderValue'], int(report_info['selectedOption']))
+    return FileResponse(output, media_type='application/pdf', filename=output)
 
-'''
 
 @app.get('/api/data')
 def get_home_info(home_info = Depends(get_home_info_context)):

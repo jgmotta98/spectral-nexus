@@ -7,10 +7,7 @@ import datetime
 from concurrent.futures import ProcessPoolExecutor
 
 
-TEMP_PATH = './files/temp'
-
-
-def create_graph(components_data_filter, input_list_dict, spectral_list, spectra_input_list, components, compound, output, band_check, cpu_cores):
+def create_graph(components_data_filter, input_list_dict, spectral_list, spectra_input_list, components, compound, upload_folder, band_check, cpu_cores):
     dict_teste = {v.iloc[0, 0]: v.drop('name', axis=1) for v in spectral_list}
     dict_input = {compound: spectra_input_list.drop('name', axis=1)}
 
@@ -23,7 +20,7 @@ def create_graph(components_data_filter, input_list_dict, spectral_list, spectra
     table_dict = {}
 
     with ProcessPoolExecutor(max_workers=cpu_cores) as executor:
-        futures = {executor.submit(create_graph_and_save, k, v, input_list_dict[k], dict_teste[k], dict_input[compound], compound): k for k, v in component_dict.items()}
+        futures = {executor.submit(create_graph_and_save, k, v, input_list_dict[k], dict_teste[k], dict_input[compound], compound, upload_folder): k for k, v in component_dict.items()}
         
         for future in futures:
             k = futures[future]
@@ -33,10 +30,11 @@ def create_graph(components_data_filter, input_list_dict, spectral_list, spectra
             except Exception as e:
                 print(f"An error occurred while processing {k}: {e}")
 
-    create_pdf_page(TEMP_PATH, output, components, table_dict, compound, band_check, percentages)
+    output = os.path.join(upload_folder, 'report.pdf')
+    create_pdf_page(upload_folder, output, components, table_dict, compound, band_check, percentages)
 
 
-def create_graph_and_save(component, data, input_list, dict_test, dict_input, compound):
+def create_graph_and_save(component, data, input_list, dict_test, dict_input, compound, upload_folder):
     table_list = []
     fig, ax = plt.subplots()
     
@@ -79,7 +77,7 @@ def create_graph_and_save(component, data, input_list, dict_test, dict_input, co
     figure = plt.gcf()
     figure.set_size_inches(9.5*2.2, 5.5*2.2)
 
-    output_path = os.path.join(TEMP_PATH, f"{component}.png")
+    output_path = os.path.join(upload_folder, f"{component}.png")
     create_temp_png(output_path, fig)
 
     table_list = sorted(table_list, key=lambda x: float(x[0]))
@@ -100,7 +98,7 @@ def footer(pdf, tmp_file):
     pdf.set_font('Times', '', 14)
     page_width = pdf.w - 2 * pdf.l_margin
 
-    img_path = '.\\files\\imgs\\spectral-nexus-icon-thicker-bw.png'
+    img_path = '..\\assets\\spectral-nexus-icon-thicker-bw.png'
     pdf.image(img_path, x=pdf.l_margin, y=pdf.get_y(), w=40, h=6)
 
     pdf.cell(page_width / 3, 10, '', 0, 0, 'L')
@@ -180,7 +178,7 @@ def create_pdf_page(imgs_path: str, output_pdf: str,
     
     pdf = FPDF(orientation="landscape")
 
-    background_image_path = '.\\files\\imgs\\background-1-test.png'
+    background_image_path = '..\\assets\\background-1-test.png'
     pdf.set_page_background(background_image_path)
 
     create_details_page(pdf, analyzed_comp_name, band_check, compound_list, percentages)

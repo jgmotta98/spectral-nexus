@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "spectral-nexus",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "chart.js": "^4.4.3",
+    "plotly.js": "^2.33.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-charts": "^3.0.0-beta.57",
     "react-dom": "^18.3.1",
+    "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.23.1",
     "react-select": "^5.8.0",
     "recharts": "^2.12.7",
