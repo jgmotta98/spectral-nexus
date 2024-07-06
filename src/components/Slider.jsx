@@ -8,8 +8,8 @@ const SliderComponent = ({ value, onChange }) => {
 
     return (
         <div>
-            <label>
-                Slider Value: {value}
+            <label style={{display: 'Flex', alignItems: 'Center'}}>
+                {value}
                 <input 
                     type="range" 
                     min="10" 

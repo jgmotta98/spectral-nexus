@@ -114,17 +114,33 @@ const Home = () => {
     };
 
     return (
-        <div>
-            <h1>Home Page</h1>
-            <FileSearch onFileSelect={handleFileSelect} />
-            <TextBox value={textBoxValue} onChange={handleTextBoxChange} />
-            <ToggleSwitch isToggled={isToggled} onToggle={handleToggleChange} />
-            <ComboBox selectedOption={selectedOption} onSelectChange={handleComboBoxChange} />
-            <SliderComponent value={sliderValue} onChange={handleSliderChange} />
-            <NumberInput value={lambda_} onChange={handleNumberChange1} /> {/* First NumberInput */}
-            <NumberInput value={porder} onChange={handleNumberChange2} /> {/* Second NumberInput */}
-            <NumberInput value={maxiter} onChange={handleNumberChange3} /> {/* Third NumberInput */}
-            <button onClick={sendDataToBackend}>Analisar composto</button>
+        <div className='general'>
+            <div className='first-line'>
+                <FileSearch className="file-search" onFileSelect={handleFileSelect} />
+                <TextBox className="text-box" value={textBoxValue} onChange={handleTextBoxChange} />
+            </div>
+            <div className='advanced-div'>
+                <div className='second-line'>
+                    <ToggleSwitch className="toggle-switch" isToggled={isToggled} onToggle={handleToggleChange} />
+                    <ComboBox className="combo-box" selectedOption={selectedOption} onSelectChange={handleComboBoxChange} />
+                </div>
+                <SliderComponent className="slider-component" value={sliderValue} onChange={handleSliderChange} />
+                <div className='third-line'>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>Lambda:</span>
+                        <NumberInput className="number-input" value={lambda_} onChange={handleNumberChange1} /> 
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>P order</span>
+                        <NumberInput className="number-input" value={porder} onChange={handleNumberChange2} />
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>Max iterações</span>
+                        <NumberInput className="number-input" value={maxiter} onChange={handleNumberChange3} />
+                    </div>
+                </div>
+            </div>
+            <button className="analyze-button" onClick={sendDataToBackend}>Analisar composto</button>
             {loading && (
                 <div className="loading-overlay">
                     <div className="spinner"></div>

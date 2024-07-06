@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Topbar = () => {
   return (
     <div style={{
+      fontSize: '15pt',
       width: '100%',
       height: '50px',
       backgroundColor: '#333',
@@ -13,6 +14,7 @@ const Topbar = () => {
       overflowX: 'hidden',
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-around',
       padding: '0 20px',
       zIndex: 1000
     }}>
