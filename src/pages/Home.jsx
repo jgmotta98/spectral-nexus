@@ -115,27 +115,37 @@ const Home = () => {
 
     return (
         <div className='general'>
+            <span>Configurações:</span>
             <div className='first-line'>
                 <FileSearch className="file-search" onFileSelect={handleFileSelect} />
                 <TextBox className="text-box" value={textBoxValue} onChange={handleTextBoxChange} />
             </div>
+
+            <span>Configurações Avançadas:</span>
             <div className='advanced-div'>
                 <div className='second-line'>
                     <ToggleSwitch className="toggle-switch" isToggled={isToggled} onToggle={handleToggleChange} />
-                    <ComboBox className="combo-box" selectedOption={selectedOption} onSelectChange={handleComboBoxChange} />
+
+                    <div>
+                        <span style={{padding: '10px'}}>Núcleos:</span>
+                        <ComboBox className="combo-box" selectedOption={selectedOption} onSelectChange={handleComboBoxChange} />
+                    </div>
                 </div>
-                <SliderComponent className="slider-component" value={sliderValue} onChange={handleSliderChange} />
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <span style={{display: 'flex', alignSelf: 'flex-start'}}>Faixa de análise (10 - 40):</span>
+                    <SliderComponent className="slider-component" value={sliderValue} onChange={handleSliderChange} />
+                </div>
                 <div className='third-line'>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <span style={{display: 'flex', alignSelf: 'flex-start'}}>Lambda:</span>
                         <NumberInput className="number-input" value={lambda_} onChange={handleNumberChange1} /> 
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>P order</span>
+                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>P order:</span>
                         <NumberInput className="number-input" value={porder} onChange={handleNumberChange2} />
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>Max iterações</span>
+                        <span style={{display: 'flex', alignSelf: 'flex-start'}}>Max iterações:</span>
                         <NumberInput className="number-input" value={maxiter} onChange={handleNumberChange3} />
                     </div>
                 </div>

@@ -19,7 +19,7 @@ const Topbar = () => {
       zIndex: 1000
     }}>
       <Link to="/" style={{ color: 'white', textDecoration: 'none', marginRight: '20px' }}>Home</Link>
-      <Link to="/report" style={{ color: 'white', textDecoration: 'none', marginRight: '20px' }}>Report</Link>
+      <Link to="/report" style={{ color: 'white', textDecoration: 'none', marginRight: '20px' }}>Relatórios</Link>
     </div>
   );
 }

@@ -10,7 +10,7 @@ const ToggleSwitch = ({ isToggled, onToggle }) => {
                 onChange={onToggle}
             />
             <span style={{ marginLeft: '8px' }}>
-                {isToggled ? 'Use parallelism: On' : 'Use parallelism: Off'}
+                {isToggled ? 'Usar paralelismo: On' : 'Usar paralelismo: Off'}
             </span>
         </label>
     );

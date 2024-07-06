@@ -13,7 +13,7 @@ const TextBox = ({ value, onChange }) => {
                 type="text"
                 value={value}
                 onChange={handleInputChange}
-                placeholder="Name"
+                placeholder="Nome do composto"
             />
         </div>
     );
