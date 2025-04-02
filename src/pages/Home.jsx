@@ -121,7 +121,7 @@ const Home = () => {
                 <TextBox className="text-box" value={textBoxValue} onChange={handleTextBoxChange} />
             </div>
 
-            <span>Configurações Avançadas:</span>
+            <span >Configurações Avançadas:</span>
             <div className='advanced-div'>
                 <div className='second-line'>
                     <ToggleSwitch className="toggle-switch" isToggled={isToggled} onToggle={handleToggleChange} />
