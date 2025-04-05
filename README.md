@@ -1,5 +1,7 @@
 # Spectral Nexus
 
+Spectral Nexus is a tool for identifying chemical compounds through weighted analysis of FT-IR spectra. It compares user-supplied spectral data with a reference database and returns a `*.pdf` report of the five most similar compounds.
+
 ## Instalation
 
 ## Usage
