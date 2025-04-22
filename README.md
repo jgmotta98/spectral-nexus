@@ -18,6 +18,10 @@ Modify all paths accordingly on [config.py](/src/config.py). Run [main.py](/src/
 
 * Outputs a report with informative graphs and tables in `*.pdf` indicating the five most similar compounds.
 
+## Learn More
+
+You can access addicional information and resources on the complete documentation [here](https://jgmotta98.github.io/spectral-nexus/)
+
 ## Credits
 
 - Baseline correction (Whittaker smoothing & airPLS) from [Z.-M. Zhang, S. Chen, and Y.-Z. Liang, 2010](https://doi.org/10.1039/B922045C).
