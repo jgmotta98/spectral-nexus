@@ -8,8 +8,10 @@ repo_name: jgmotta98/spectral-nexus
 
 nav:
   - Home: index.md
-  - Setup Guide: setup.md
-  - Editing Guide: update-documentation.md
+  - Installation Guide: installation.md
+  - Usage: usage.md
+  - API Reference: api.md
+  - Database Schema: database.md
 
 theme:
   name: material

@@ -2,7 +2,7 @@
   <br>
   <a href="https://jgmotta98.github.io/spectral-nexus/"><img src="doc/docs/assets/images/spectral-nexus-icon-thicker.png"/></a>
   <br>
-  Spectral Nexus
+  <b>Spectral Nexus</b>
   <br>
 </h1>
 
