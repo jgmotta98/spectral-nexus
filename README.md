@@ -12,7 +12,7 @@
 
 A tool for identifying chemical compounds through weighted analysis of FT-IR spectra. It compares user-supplied spectral data with a reference database and returns a `*.pdf` report of the five most similar compounds.
 
-![screenshot](https://github-production-user-asset-6210df.s3.amazonaws.com/90492274/436364605-e5d27941-9f70-4eb0-bc04-bb519e6258af.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250423%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250423T045100Z&X-Amz-Expires=300&X-Amz-Signature=c6ea305e122d070a6f1f5dbffc94d94731a80118570f96a91d7fdafc36ce169c&X-Amz-SignedHeaders=host)
+![spectral-nexus-use](https://github.com/user-attachments/assets/de50e3a8-7345-44bb-9391-f30f8062fe8a)
 
 ## Instalation
 
