@@ -1,14 +1,35 @@
-# Spectral Nexus
+<h1 align="center">
+  <br>
+  <a href="https://jgmotta98.github.io/spectral-nexus/"><img src="doc/docs/assets/images/spectral-nexus-icon-thicker.png"/></a>
+  <br>
+  Spectral Nexus
+  <br>
+</h1>
 
-Spectral Nexus is a tool for identifying chemical compounds through weighted analysis of FT-IR spectra. It compares user-supplied spectral data with a reference database and returns a `*.pdf` report of the five most similar compounds.
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
+A tool for identifying chemical compounds through weighted analysis of FT-IR spectra. It compares user-supplied spectral data with a reference database and returns a `*.pdf` report of the five most similar compounds.
+
+![screenshot](https://github-production-user-asset-6210df.s3.amazonaws.com/90492274/436364605-e5d27941-9f70-4eb0-bc04-bb519e6258af.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250423%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250423T045100Z&X-Amz-Expires=300&X-Amz-Signature=c6ea305e122d070a6f1f5dbffc94d94731a80118570f96a91d7fdafc36ce169c&X-Amz-SignedHeaders=host)
 
 ## Instalation
 
-## Usage
+Clone the repository:
+```sh
+git clone https://github.com/jgmotta98/spectral-nexus.git
+```
 
-Use the database returned from the [Spectra Scraper](https://github.com/jgmotta98/spectra-scraper) to feed the algorithm. Use a `*.csv` file to input the FT-IR spectral data.
+Install dependencies:
+```sh
+pip install -r requirements.txt
+```
 
-Modify all paths accordingly on [config.py](/src/config.py). Run [main.py](/src/main.py).
+Run the `run_servers.bat` file:
+```sh
+\run_servers.bat
+```
 
 ## Features
 
@@ -16,11 +37,11 @@ Modify all paths accordingly on [config.py](/src/config.py). Run [main.py](/src/
 
 * Correlation of inputted FT-IR spectra bands with the database to find the most similar compounds.
 
-* Outputs a report with informative graphs and tables in `*.pdf` indicating the five most similar compounds.
+* Provides a downloadable `*.pdf` report containing informative graphs and tables highlighting the five most similar compounds.
 
 ## Learn More
 
-You can access addicional information and resources on the complete documentation [here](https://jgmotta98.github.io/spectral-nexus/)
+You can find more information and resources in the [complete documentation](https://jgmotta98.github.io/spectral-nexus/).
 
 ## Credits
 
@@ -29,8 +50,3 @@ You can access addicional information and resources on the complete documentatio
 ## License
 
 [MIT](./LICENSE) © Spectral Nexus
-
-## Contact
-
-- GitHub: [jgmotta98](https://github.com/jgmotta98)
-- LinkedIn: [Jonathan Motta](https://www.linkedin.com/in/jonathan-motta/)
