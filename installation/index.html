@@ -12,26 +12,28 @@
         <meta name="author" content="Jonathan Motta">
       
       
-        <link rel="canonical" href="https://spectral-nexus.dev/">
+        <link rel="canonical" href="https://spectral-nexus.dev/installation/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="installation/">
+      
+        <link rel="next" href="../usage/">
       
       
-      <link rel="icon" href="assets/images/spectral-nexus-icon-thicker.ico">
+      <link rel="icon" href="../assets/images/spectral-nexus-icon-thicker.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
     
     
       
-        <title>Spectral Nexus</title>
+        <title>Installation Guide - Spectral Nexus</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#technologies-used" class="md-skip">
+        <a href="#setup-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +94,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Spectral Nexus" class="md-header__button md-logo" aria-label="Spectral Nexus" data-md-component="logo">
+    <a href=".." title="Spectral Nexus" class="md-header__button md-logo" aria-label="Spectral Nexus" data-md-component="logo">
       
-  <img src="assets/images/spectral-nexus-icon-thicker.png" alt="logo">
+  <img src="../assets/images/spectral-nexus-icon-thicker.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Installation Guide
             
           </span>
         </div>
@@ -227,9 +229,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Spectral Nexus" class="md-nav__button md-logo" aria-label="Spectral Nexus" data-md-component="logo">
+    <a href=".." title="Spectral Nexus" class="md-nav__button md-logo" aria-label="Spectral Nexus" data-md-component="logo">
       
-  <img src="assets/images/spectral-nexus-icon-thicker.png" alt="logo">
+  <img src="../assets/images/spectral-nexus-icon-thicker.png" alt="logo">
 
     </a>
     Spectral Nexus
@@ -253,6 +255,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -262,13 +286,15 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   
   <span class="md-ellipsis">
-    Home
+    Installation Guide
     
   </span>
   
@@ -276,12 +302,12 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Home
+    Installation Guide
     
   </span>
   
@@ -294,6 +320,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -302,36 +330,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#technologies-used" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Technologies Used
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#cloning-the-project" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Started
+      Cloning the Project
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
+  <a href="#creating-a-virtual-enviroment" class="md-nav__link">
     <span class="md-ellipsis">
-      Documentation
+      Creating a Virtual Enviroment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-case" class="md-nav__link">
+  <a href="#installing-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Case
+      Installing Dependencies
     </span>
   </a>
   
@@ -352,29 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation Guide
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage/" class="md-nav__link">
+      <a href="../usage/" class="md-nav__link">
         
   
   
@@ -396,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -418,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="database/" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         
   
   
@@ -450,6 +456,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -458,36 +466,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#technologies-used" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Technologies Used
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#cloning-the-project" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Started
+      Cloning the Project
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
+  <a href="#creating-a-virtual-enviroment" class="md-nav__link">
     <span class="md-ellipsis">
-      Documentation
+      Creating a Virtual Enviroment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-case" class="md-nav__link">
+  <a href="#installing-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Case
+      Installing Dependencies
     </span>
   </a>
   
@@ -512,47 +520,42 @@
   
 
 
-<h1 align="center">
-  <br>
-  <img src="assets/images/spectral-nexus-icon-thicker.png"/>
-  <br>
-  <b>Spectral Nexus</b>
-  <br>
-</h1>
-
-<hr />
-<p><strong>Spectral Nexus</strong> is an interactive tool for identifying chemical compounds based on the weighted analysis of FT-IR (Fourier-Transform Infrared) spectra. Designed with accessibility and precision in mind, the platform streamlines spectral analysis, making it easier for users—researchers, students, and professionals alike—to identify pesticide compounds through spectral matching and classification.</p>
-<hr />
-<h2 id="technologies-used">Technologies Used</h2>
+<h1 id="setup-guide">Setup Guide</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Ensure your system has the following installed:</p>
 <ul>
-<li><strong>Frontend</strong>: Vite + React.js</li>
-<li><strong>Backend</strong>: FastAPI (Python)</li>
-<li><strong>Database</strong>: SQLite</li>
+<li><a href="https://www.python.org/downloads/">Python 3.10+</a></li>
+<li><a href="https://pip.pypa.io/en/stable/">pip</a></li>
+<li><a href="https://git-scm.com/">Git</a></li>
 </ul>
 <hr />
-<h2 id="getting-started">Getting Started</h2>
-<p>To get started with Spectral Nexus, follow the <a href="installation/">Installation Guide</a>.</p>
-<ol>
-<li>Upload your FT-IR spectrum CSV.</li>
-<li>Let the system preprocess and match it against the database.</li>
-<li>Review the top five matching compounds.</li>
-<li>Download your report.</li>
-</ol>
+<h2 id="cloning-the-project">Cloning the Project</h2>
+<p>Clone the repository to your local machine:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Safe-Solutions-Engenharia/documentation-default.git<span class="w"> </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>documentation-default
+</span></code></pre></div></p>
 <hr />
-<h2 id="documentation">Documentation</h2>
-<ul>
-<li><a href="installation/">Installation</a></li>
-<li><a href="usage/">Usage</a></li>
-<li><a href="api/">API Reference</a></li>
-<li><a href="database/">Database Schema</a></li>
-</ul>
+<h2 id="creating-a-virtual-enviroment">Creating a Virtual Enviroment</h2>
+<p>Create and activate a virtual environment:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux/macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <hr />
-<h2 id="use-case">Use Case</h2>
-<p>This tool was developed as part of an academic thesis for the <strong>Institute of Chemistry, Federal University of Rio de Janeiro (UFRJ)</strong>, focusing on FT-IR spectrum analysis for pesticide detection and classification.</p>
-<p><a href="assets/files/Jonathan_Goncalves_Motta.pdf">Read the full thesis here <em>(in portuguese)</em></a></p>
-<hr />
-<p><strong>Spectral Nexus</strong><br />
-<em>Developed with 🧪 by Jonathan Motta</em></p>
+<h2 id="installing-dependencies">Installing Dependencies</h2>
+<p>Install dependencies listed in requirements.txt:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</span></code></pre></div>
 
 
 
@@ -581,15 +584,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Installation Guide">
+          <a href="../usage/" class="md-footer__link md-footer__link--next" aria-label="Next: Usage">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Installation Guide
+                Usage
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -655,10 +674,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy", "navigation.footer"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.footer"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>

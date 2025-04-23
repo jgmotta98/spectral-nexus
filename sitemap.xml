@@ -5,11 +5,19 @@
          <lastmod>2025-04-23</lastmod>
     </url>
     <url>
-         <loc>https://spectral-nexus.dev/setup/</loc>
+         <loc>https://spectral-nexus.dev/api/</loc>
          <lastmod>2025-04-23</lastmod>
     </url>
     <url>
-         <loc>https://spectral-nexus.dev/update-documentation/</loc>
+         <loc>https://spectral-nexus.dev/database/</loc>
+         <lastmod>2025-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://spectral-nexus.dev/installation/</loc>
+         <lastmod>2025-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://spectral-nexus.dev/usage/</loc>
          <lastmod>2025-04-23</lastmod>
     </url>
 </urlset>

@@ -12,10 +12,10 @@
         <meta name="author" content="Jonathan Motta">
       
       
-        <link rel="canonical" href="https://spectral-nexus.dev/update-documentation/">
+        <link rel="canonical" href="https://spectral-nexus.dev/database/">
       
       
-        <link rel="prev" href="../setup/">
+        <link rel="prev" href="../api/">
       
       
       
@@ -24,7 +24,7 @@
     
     
       
-        <title>Editing Guide - Spectral Nexus</title>
+        <title>Database Schema - Spectral Nexus</title>
       
     
     
@@ -75,11 +75,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#update-documentation" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -111,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Editing Guide
+              Database Schema
             
           </span>
         </div>
@@ -278,12 +273,56 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Setup Guide
+    Installation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
     
   </span>
   
@@ -306,88 +345,18 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Editing Guide
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Editing Guide
+    Database Schema
     
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Understanding Project Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#editing-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Editing Documentation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-pages-and-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding Pages and Navigation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#further-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      Further Reading
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -410,52 +379,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Understanding Project Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#editing-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Editing Documentation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-pages-and-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adding Pages and Navigation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#further-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      Further Reading
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -474,42 +397,9 @@
   
 
 
-<h1 id="update-documentation">Update Documentation</h1>
-<h2 id="understanding-project-structure">Understanding Project Structure</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>documentation-default/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>docs/
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│<span class="w">   </span>├──<span class="w"> </span>index.md
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│<span class="w">   </span>└──<span class="w"> </span>assets/
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│<span class="w">       </span>└──<span class="w"> </span>images/
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├──<span class="w"> </span>mkdocs.yml
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├──<span class="w"> </span>requirements.txt
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└──<span class="w"> </span>README.md
-</span></code></pre></div>
-<p>The <code>docs/</code> folder contains all Markdown source files from each page of the documentation. The <code>mkdocs.yml</code> file contains the configuration for the documentation name, theme, navigation and plugings.</p>
-<hr />
-<h2 id="editing-documentation">Editing Documentation</h2>
-<p>All documentation is written in Markdown (<code>.md</code>). For example, <code>index.md</code> might look like:</p>
-<div class="language-md highlight"><span class="filename">index.md</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gh"># Welcome</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>This is the homepage of your MkDocs documentation.
-</span></code></pre></div>
-<p>Always use Markdown syntax to add headings, links, images, tables, and more.</p>
-<hr />
-<h2 id="adding-pages-and-navigation">Adding Pages and Navigation</h2>
-<p>In <code>mkdocs.yml</code>, define the order of the documentation structure:</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mkdocs.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span>
-<span class="normal"><a href="#__codelineno-2-11">11</a></span>
-<span class="normal"><a href="#__codelineno-2-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="nt">nav</span><span class="p">:</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Setup Guide</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setup.md</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Editing Guide</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">update-documentation.md</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Deploy Example</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deployment.md</span>
-</span></code></pre></div></td></tr></table></div>
-<hr />
-<h2 id="further-reading">Further Reading</h2>
-<p>To learn more about specific plugins and Markdown syntax, check out the the <a href="https://www.mkdocs.org/">mkdocs documentation</a>.</p>
+  <h1>Database Schema</h1>
+
+
 
 
 
@@ -539,7 +429,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup Guide">
+          <a href="../api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Reference">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -549,7 +439,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Setup Guide
+                API Reference
               </div>
             </div>
           </a>

@@ -12,13 +12,13 @@
         <meta name="author" content="Jonathan Motta">
       
       
-        <link rel="canonical" href="https://spectral-nexus.dev/setup/">
+        <link rel="canonical" href="https://spectral-nexus.dev/usage/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../update-documentation/">
+        <link rel="next" href="../api/">
       
       
       <link rel="icon" href="../assets/images/spectral-nexus-icon-thicker.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Setup Guide - Spectral Nexus</title>
+        <title>Usage - Spectral Nexus</title>
       
     
     
@@ -77,11 +77,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#setup-guide" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -113,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup Guide
+              Usage
             
           </span>
         </div>
@@ -277,6 +272,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -286,88 +303,18 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Setup Guide
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Setup Guide
+    Usage
     
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloning-the-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cloning the Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-virtual-enviroment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a Virtual Enviroment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installing-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing Dependencies
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -380,12 +327,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../update-documentation/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Editing Guide
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
     
   </span>
   
@@ -412,52 +381,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloning-the-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cloning the Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-virtual-enviroment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a Virtual Enviroment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installing-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing Dependencies
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -476,42 +399,9 @@
   
 
 
-<h1 id="setup-guide">Setup Guide</h1>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Ensure your system has the following installed:</p>
-<ul>
-<li><a href="https://www.python.org/downloads/">Python 3.10+</a></li>
-<li><a href="https://pip.pypa.io/en/stable/">pip</a></li>
-<li><a href="https://git-scm.com/">Git</a></li>
-</ul>
-<hr />
-<h2 id="cloning-the-project">Cloning the Project</h2>
-<p>Clone the repository to your local machine:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Safe-Solutions-Engenharia/documentation-default.git<span class="w"> </span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>documentation-default
-</span></code></pre></div></p>
-<hr />
-<h2 id="creating-a-virtual-enviroment">Creating a Virtual Enviroment</h2>
-<p>Create and activate a virtual environment:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux/macOS</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<hr />
-<h2 id="installing-dependencies">Installing Dependencies</h2>
-<p>Install dependencies listed in requirements.txt:</p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-</span></code></pre></div>
+  <h1>Usage</h1>
+
+
 
 
 
@@ -541,7 +431,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation Guide">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -551,20 +441,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Installation Guide
               </div>
             </div>
           </a>
         
         
           
-          <a href="../update-documentation/" class="md-footer__link md-footer__link--next" aria-label="Next: Editing Guide">
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API Reference">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Editing Guide
+                API Reference
               </div>
             </div>
             <div class="md-footer__button md-icon">
