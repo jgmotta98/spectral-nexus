@@ -8,4 +8,6 @@ Welcome to the official documentation for the **documentation-default**! This gu
 
 To get started right away, head to the [Setup Guide](setup.md) and follow the step-by-step instructions.
 
+[Thesis](assets/files/Jonathan_Goncalves_Motta.pdf)
+
 For contributions or questions, feel free to open an issue or pull request on [GitHub](https://github.com/Safe-Solutions-Engenharia/documentation-default).
