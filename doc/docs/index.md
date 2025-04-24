@@ -20,22 +20,10 @@
 
 ---
 
-## Getting Started
-
-To get started with Spectral Nexus, follow the [Installation Guide](installation.md).
-
-1. Upload your FT-IR spectrum CSV.
-2. Let the system preprocess and match it against the database.
-3. Review the top five matching compounds.
-4. Download your report.
-
----
-
 ## Documentation
 
 - [Installation](installation.md)
 - [Usage](usage.md)
-- [API Reference](api.md)
 - [Database Schema](database.md)
 
 ---

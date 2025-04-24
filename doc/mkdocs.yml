@@ -10,7 +10,6 @@ nav:
   - Home: index.md
   - Installation Guide: installation.md
   - Usage: usage.md
-  - API Reference: api.md
   - Database Schema: database.md
 
 theme:

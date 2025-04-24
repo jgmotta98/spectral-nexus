@@ -50,12 +50,16 @@ Install dependencies listed in requirements.txt:
 pip install -r requirements.txt
 ```
 
-## Running with Batch File (Windows Only)
+---
+
+## Running on Windows
 
 To start both the backend and frontend servers simultaneously on Windows, simply run the provided batch file:
 ```bash
 ./run_servers.bat
 ```
+
+---
 
 ## Running on macOS / Linux
 
