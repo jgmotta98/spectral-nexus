@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://spectral-nexus.dev/database/">
       
       
-        <link rel="prev" href="../api/">
+        <link rel="prev" href="../usage/">
       
       
       
@@ -74,6 +74,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#database" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -314,28 +319,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -345,6 +328,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -357,6 +355,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#population" class="md-nav__link">
+    <span class="md-ellipsis">
+      Population
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -379,6 +423,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#population" class="md-nav__link">
+    <span class="md-ellipsis">
+      Population
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -397,9 +478,54 @@
   
 
 
-  <h1>Database Schema</h1>
-
-
+<h1 id="database">Database</h1>
+<h2 id="purpose">Purpose</h2>
+<p>The database serves as the core for:</p>
+<ul>
+<li>Storing <strong>pre-processed FT-IR spectra</strong> of known pesticides.</li>
+<li>Enabling <strong>quick lookups</strong> and ranked results based on spectral similarity metrics.</li>
+</ul>
+<hr />
+<h2 id="structure">Structure</h2>
+<p>The database is implemented using <strong>SQLite</strong> for local usage and simplicity. Its main table includes:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Unique identifier for each compound</td>
+</tr>
+<tr>
+<td><code>compound_name</code></td>
+<td>Common name of the pesticide</td>
+</tr>
+<tr>
+<td><code>wavenumbers</code></td>
+<td>Array or string representing spectral x-axis</td>
+</tr>
+<tr>
+<td><code>absorbance</code></td>
+<td>Corresponding absorbance or transmittance values</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 The structure may expand to include more fields as needed for future features.</p>
+</blockquote>
+<hr />
+<h2 id="population">Population</h2>
+<p>All spectral data was obtained from a <strong>free and open-access public database</strong>. Each spectrum goes through the following preprocessing pipeline before insertion:</p>
+<ol>
+<li><strong>Baseline correction</strong> using airPLS.</li>
+<li><strong>Normalization</strong> of transmittance values.</li>
+<li><strong>Band filtering</strong> to retain only relevant peaks.</li>
+</ol>
+<p>These steps ensure consistency across the dataset and improve classification performance.</p>
 
 
 
@@ -429,7 +555,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Reference">
+          <a href="../usage/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Usage">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -439,7 +565,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                API Reference
+                Usage
               </div>
             </div>
           </a>

@@ -2,22 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://spectral-nexus.dev/</loc>
-         <lastmod>2025-04-23</lastmod>
-    </url>
-    <url>
-         <loc>https://spectral-nexus.dev/api/</loc>
-         <lastmod>2025-04-23</lastmod>
+         <lastmod>2025-04-24</lastmod>
     </url>
     <url>
          <loc>https://spectral-nexus.dev/database/</loc>
-         <lastmod>2025-04-23</lastmod>
+         <lastmod>2025-04-24</lastmod>
     </url>
     <url>
          <loc>https://spectral-nexus.dev/installation/</loc>
-         <lastmod>2025-04-23</lastmod>
+         <lastmod>2025-04-24</lastmod>
     </url>
     <url>
          <loc>https://spectral-nexus.dev/usage/</loc>
-         <lastmod>2025-04-23</lastmod>
+         <lastmod>2025-04-24</lastmod>
     </url>
 </urlset>

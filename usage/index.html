@@ -18,7 +18,7 @@
         <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../api/">
+        <link rel="next" href="../database/">
       
       
       <link rel="icon" href="../assets/images/spectral-nexus-icon-thicker.ico">
@@ -76,6 +76,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#usage-guide" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -303,6 +308,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -316,28 +336,145 @@
 
       </a>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
         
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Tour
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uploading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uploading Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallel-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-analysis-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Analysis Range
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline-correction-airpls-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Baseline Correction (airPLS Algorithm)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Downloading Report
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Downloading Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Report Contents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips &amp; Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-or-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Questions or Feedback?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -381,6 +518,136 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Tour
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uploading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uploading Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallel-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-analysis-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Analysis Range
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline-correction-airpls-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Baseline Correction (airPLS Algorithm)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Downloading Report
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Downloading Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Report Contents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips &amp; Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-or-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Questions or Feedback?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -399,9 +666,99 @@
   
 
 
-  <h1>Usage</h1>
-
-
+<h1 id="usage-guide">Usage Guide</h1>
+<h2 id="overview">Overview</h2>
+<p><strong>Spectral Nexus</strong> is an interactive web application that helps you identify chemical compounds by comparing FT-IR spectra using a custom algorithm and a free spectral database.</p>
+<p>The workflow is simple:</p>
+<ol>
+<li><strong>Upload</strong> a spectrum (<code>.csv</code> format).</li>
+<li><strong>Analyze</strong> the spectrum using the matching algorithm.</li>
+<li><strong>Review</strong> the top 5 closest candidates via charts.</li>
+<li><strong>Download</strong> a detailed report in <code>PDF</code> format.</li>
+</ol>
+<hr />
+<h2 id="interface-tour">Interface Tour</h2>
+<p>The web app consists of the following main sections:</p>
+<ul>
+<li><strong>Home</strong>: Upload your FT-IR spectrum file (<code>.csv</code>) and configure processing options before analysis.</li>
+<li><strong>Reports</strong> <em>(Relatórios)</em>: View and download results in a comprehensive <code>PDF</code> format.</li>
+</ul>
+<hr />
+<h2 id="uploading-data">Uploading Data</h2>
+<ol>
+<li>Go to the <strong>Home</strong> page.</li>
+<li>Choose your <code>.csv</code> file containing the FT-IR data.</li>
+<li>Click on <strong>Choose file</strong> <em>(Escolher arquivo)</em> to submit it.</li>
+<li></li>
+</ol>
+<blockquote>
+<p>💡 The <code>.csv</code> must have two columns: <strong>Wavenumber (x)</strong> and <strong>Absorbance (y)</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="advanced-configurations">Advanced Configurations</h2>
+<p>For greater control over the analysis, <strong>Spectral Nexus</strong> offers several advanced configuration options designed to optimize performance and improve the quality of spectral processing.</p>
+<h3 id="parallel-processing">Parallel Processing</h3>
+<ul>
+<li>You can enable <strong>multi-core processing</strong> to accelerate computations by leveraging multiple CPU cores — ideal for large datasets or batch processing.</li>
+</ul>
+<h3 id="custom-analysis-range">Custom Analysis Range</h3>
+<p>You can specify a custom <strong>wavenumber range</strong> to be used during the band filtering stage. This allows the algorithm to focus on the most chemically informative regions of the FT-IR spectrum and discard irrelevant noise.</p>
+<p>The tool performs a <strong>local minima search</strong> using a sliding window centered around each point in the spectrum. The window size determines how far before and after each point the algorithm looks to identify significant peaks.</p>
+<ul>
+<li>The default window is <strong>±25 cm⁻¹</strong>, as it provided the best performance during testing.</li>
+<li>You can adjust this range in the interface.</li>
+</ul>
+<p>A band is considered relevant if it has the highest <strong>relative transmittance</strong> within the specified range on both sides, marking it as a prominent band suitable for compound identification.</p>
+<p><img alt="example" src="../assets/images/animation_filtragem.gif" />
+<em>Figure: Animated example of the filtering process used to identify relevant spectral bands.</em></p>
+<h3 id="baseline-correction-airpls-algorithm">Baseline Correction (airPLS Algorithm)</h3>
+<p><strong>Spectral Nexus</strong> uses the <strong>adaptive iteratively reweighted penalized least squares (airPLS)</strong> algorithm for baseline correction. You can adjust the following parameters:</p>
+<ul>
+<li><code>lambda_</code>: Controls the <strong>smoothing intensity</strong> of the baseline. Higher values result in a smoother correction.</li>
+<li><code>porder</code>: Defines the <strong>order of the penalty</strong>, allowing finer tuning for gradual curvature changes or smoother transitions.</li>
+<li><code>itermax</code>: Sets the <strong>maximum number of iterations</strong> allowed during the baseline adjustment process.</li>
+</ul>
+<blockquote>
+<p>💡 Fine-tuning these parameters can significantly improve the reliability of compound matching in noisy or complex spectra.</p>
+</blockquote>
+<hr />
+<h2 id="downloading-report">Downloading Report</h2>
+<p>Once the analysis is complete, you can generate a detailed PDF report with your results.</p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Navigate to the <strong>Reports</strong> tab.</li>
+<li>Click <strong>Download Report</strong> <em>(Download Relatório)</em> to export the results.</li>
+</ol>
+<h3 id="report-contents">Report Contents</h3>
+<p>The generated PDF includes:</p>
+<ul>
+<li>
+<p><strong>Candidate Table</strong><br />
+  A ranked list of the top matched compounds with similarity scores.</p>
+</li>
+<li>
+<p><strong>Overlaid Spectra Plots</strong><br />
+  Visual comparison between your input spectrum and each of the top matches.</p>
+</li>
+<li>
+<p><strong>Metadata</strong><br />
+  Information such as timestamp, preprocessing parameters used, and configuration details.</p>
+</li>
+</ul>
+<blockquote>
+<p>💡 Make sure you've run an analysis before attempting to download the report. The <strong>Reports</strong> tab is enabled only after a successful analysis.</p>
+</blockquote>
+<hr />
+<h2 id="tips-troubleshooting">Tips &amp; Troubleshooting</h2>
+<ul>
+<li>Ensure your uploaded <code>.csv</code> is correctly formatted.</li>
+<li>The "<strong>Reports</strong>" tab is only enabled after a successful analysis.</li>
+<li>If no matches are found, the compound may not exist in the reference database, or the resolution of the uploaded FT-IR spectrum may differ significantly from the database spectra.</li>
+</ul>
+<hr />
+<h2 id="questions-or-feedback">Questions or Feedback?</h2>
+<p>If you encounter issues or have suggestions, feel free to <a href="https://github.com/jgmotta98/spectral-nexus/issues">open an issue</a> or reach out via <a href="https://github.com/jgmotta98/spectral-nexus/discussions">GitHub Discussions</a>.</p>
+<hr />
 
 
 
@@ -448,13 +805,13 @@
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API Reference">
+          <a href="../database/" class="md-footer__link md-footer__link--next" aria-label="Next: Database Schema">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                API Reference
+                Database Schema
               </div>
             </div>
             <div class="md-footer__button md-icon">
