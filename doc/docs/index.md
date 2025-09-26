@@ -32,7 +32,7 @@
 
 This tool was developed as part of an academic thesis for the **Institute of Chemistry, Federal University of Rio de Janeiro (UFRJ)**, focusing on FT-IR spectrum analysis for pesticide detection and classification.
 
-[Read the full thesis here _(in portuguese)_](assets/files/Jonathan_Goncalves_Motta.pdf)
+[Read the full thesis here _(in portuguese)_](https://pantheon.ufrj.br/bitstream/11422/26302/1/JGMotta.pdf)
 
 ---
 
