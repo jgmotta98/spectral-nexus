@@ -1,22 +1,11 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Topbar from './Topbar';
-import Home from './pages/Home';
-import Report from './pages/Report';
-import Footer from './Footer';
-import './App.css';
+import AnalysisForm from './components/AnalysisForm'; 
+import '98.css/dist/98.css';
 
-const App = () => {
+function App() {
   return (
-    <div className="App" style={{ paddingTop: '0px' }}>
-    <Topbar />
-        <div style={{ padding: '0px', width: '100%', height: 'calc(70vh)' }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/report" element={<Report />} />
-        </Routes>
-      </div>
-    <Footer />
+    <div className="app-container">
+      <AnalysisForm />
     </div>
   );
 }

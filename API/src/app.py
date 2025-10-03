@@ -34,7 +34,7 @@ REPORT_DB_PATH = '../database/report_database.db'
 class FormData(BaseModel):
     textBoxValue: str
     isToggled: bool
-    selectedOption: str
+    selectedOption: int
     sliderValue: int
     lambda_: int
     poder: int
@@ -44,7 +44,7 @@ class FormData(BaseModel):
 home_info_context: ContextVar[dict] = ContextVar('home_info', default={
     "textBoxValue": "",
     "isToggled": False,
-    "selectedOption": "1",
+    "selectedOption": 1,
     "sliderValue": 25,
     "lambda_": 100,
     "porder": 1,
@@ -160,7 +160,7 @@ def convert_json_to_dataframes(report_info):
 async def receive_data(
     textBoxValue: str = Form(...),
     isToggled: bool = Form(...),
-    selectedOption: str = Form(...),
+    selectedOption: int = Form(...),
     sliderValue: int = Form(...),
     lambda_: int = Form(...),
     porder: int = Form(...),
@@ -268,3 +268,8 @@ def get_home_info(home_info = Depends(get_home_info_context)):
 @app.get('/api/report')
 def get_report_info(report_info = Depends(get_report_info_context)):
     return report_info
+
+@app.get('/api/cpu-cores')
+def get_cores():
+    core_count = mp.cpu_count()
+    return {"cores": core_count}
