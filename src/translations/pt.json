@@ -1,0 +1,31 @@
+{
+  "translation": {
+    "app_title": "Spectral Nexus",
+    "search_file": "Buscar...",
+    "no_file_chosen": "Nenhum arquivo escolhido",
+    "compound_name": "Nome do Composto:",
+    "name_placeholder": "Nome",
+    "use_parallelization": "Usar paralelização",
+    "cores": "Núcleos:",
+    "analysis_range": "Faixa de análise:",
+    "analyze_button": "Analisar →",
+    "download_report": "Download Relatório",
+    "loading_message": "Clique em \"Analisar\" para carregar o gráfico.",
+    "analysis_view_title": "Visualização do Espectro FT-IR",
+    "info_lambda": "O Lambda controla o peso atribuído à suavidade da linha de base em relação à fidelidade aos dados originais. Quanto maior o valor, mais suave será a linha de base resultante.",
+    "info_porder": "O P order determina o tipo de curvatura que o algoritmo permite na linha de base.",
+    "info_max_iter": "O Max Iterations é número máximo de vezes que o algoritmo pode repetir o processo de ajuste da linha de base. Este valor garante a convergência ou o término do processo dentro de um limite razoável de tempo.",
+    "info_analysis_range": "A Faixa de Análise define a faixa de valores no eixo do número de onda (cm-¹) que o algoritmo deve considerar ao procurar por bandas.",
+    "error_select_file": "Por favor, selecione um arquivo CSV para análise.",
+    "error_compound_name": "Por favor, insira o Nome do Composto.",
+    "error_porder_zero": "O Parâmetro P Order não pode ser zero ou vazio.",
+    "error_maxiter_zero": "O Parâmetro Max Iterations não pode ser zero ou vazio.",
+    "error_lambda_zero": "O Parâmetro Lambda não pode ser zero ou vazio.",
+    "help_developed_by": "Este front-end foi desenvolvido com o auxílio de",
+    "help_and": "e",
+    "help_publications": "Publicações:",
+    "help_tcc_link": "Trabalho de Conclusão de Curso",
+    "spectra_of": "Espectro de ",
+    "data_of": "Dados de "
+  }
+}

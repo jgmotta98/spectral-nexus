@@ -1,0 +1,31 @@
+{
+  "translation": {
+    "app_title": "Spectral Nexus",
+    "search_file": "Browse...",
+    "no_file_chosen": "No file chosen",
+    "compound_name": "Compound Name:",
+    "name_placeholder": "Name",
+    "use_parallelization": "Use parallelization",
+    "cores": "Cores:",
+    "analysis_range": "Analysis Range:",
+    "analyze_button": "Analyze →",
+    "download_report": "Download Report",
+    "loading_message": "Click \"Analyze\" to load the graph.",
+    "analysis_view_title": "FT-IR Spectrum Visualization",
+    "info_lambda": "Lambda controls the weight given to the smoothness of the baseline versus its fidelity to the original data. A larger value results in a smoother resultant baseline.",
+    "info_porder": "The P order dictates the type of curvature the algorithm permits in the baseline.",
+    "info_max_iter": "Max Iterations is the maximum number of times the algorithm can repeat the baseline fitting process. This value ensures convergence or termination of the process within a reasonable time limit.",
+    "info_analysis_range": "The Analysis Range defines the range of values on the wavenumber axis (cm-¹) that the algorithm should consider when looking for bands.",
+    "error_select_file": "Please select a CSV file for analysis.",
+    "error_compound_name": "Please enter the Compound Name.",
+    "error_porder_zero": "The P Order parameter cannot be zero or empty.",
+    "error_maxiter_zero": "The Max Iterations parameter cannot be zero or empty.",
+    "error_lambda_zero": "The Lambda parameter cannot be zero or empty.",
+    "help_developed_by": "This front-end was developed with the assistance of",
+    "help_and": "and",
+    "help_publications": "Publications:",
+    "help_tcc_link": "Undergraduate Thesis",
+    "spectra_of": "Spectrum of ",
+    "data_of": "Data of "
+  }
+}
