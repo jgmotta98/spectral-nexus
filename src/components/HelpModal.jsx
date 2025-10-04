@@ -22,8 +22,10 @@ const HelpModal = ({ text, onClose }) => {
                     </div>
                 </div>
 
-                <div className="window-body text-lg" style={{ padding: '15px' }}>
-                    <p>{text}</p>
+                <div className="window-body text-lg text-center" style={{ padding: '15px' }}>
+                    <p 
+                        dangerouslySetInnerHTML={{ __html: text }}
+                    />
                     <br />
                 </div>
             </div>

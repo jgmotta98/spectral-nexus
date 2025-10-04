@@ -5,7 +5,7 @@ const ValidationErrorModal = ({ message, onClose }) => {
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
       <div className="window" style={{ width: '300px' }}>
         <div className="title-bar">
-          <div className="title-bar-text">Erro de Validação</div>
+          <div className="title-bar-text"></div>
           <div className="title-bar-controls">
             <button aria-label="Close" onClick={onClose}></button>
           </div>

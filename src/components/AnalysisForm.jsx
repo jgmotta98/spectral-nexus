@@ -5,10 +5,14 @@ import InteractiveGraph from './InteractiveGraph';
 import ValidationModal from './ValidationError';
 import LogoImage from '../assets/spectral-nexus-icon-thicker.ico';
 import WIN98_LOADING_GIF from '../assets/loading-windows98.gif'; 
+import { useTranslation } from 'react-i18next';
 
 const AnalysisForm = () => {
+  const { t, i18n } = useTranslation("global");
+  const currentLanguageCode = i18n.language ? i18n.language.toUpperCase().split('-')[0]: 'PT';
+
   const [isExpanded, setIsExpanded] = useState(false);
-  const [language, setLanguage] = useState('PT-BR');
+  //const [language, setLanguage] = useState('PT-BR');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const fileInputRef = useRef(null); 
@@ -25,11 +29,53 @@ const AnalysisForm = () => {
     analysisRange: 25,
   });
   const [fileName, setFileName] = useState(formData.fileName || '');
-  const helpText = "Aqui vai o texto de ajuda detalhado...";
-  const lambdaText = "Esta é a informação detalhada sobre a Lambda.";
-  const porderText = "Esta é a informação detalhada sobre a P Order.";
-  const maxIterText = "Esta é a informação detalhada sobre a Max Iter.";
-  const analysisText = "Esta é a informação detalhada sobre a Faixa de Análise.";
+  const linkHtml = useMemo(() => `
+    <p>
+      ${t('translation.help_publications')}
+      <br>
+      <a 
+        href="https://pantheon.ufrj.br/handle/11422/26302" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style="color: #0000FF; text-decoration: underline;"
+      >
+        ${t('translation.help_tcc_link')}
+      </a>
+    </p>
+  `, [t]);
+
+  const helpText = useMemo(() => `
+    <p>
+      ${t('translation.help_developed_by')}
+      <a 
+        href="https://github.com/Guigo1008" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style="color: #0000FF; text-decoration: underline;"
+      >
+        Guigo1008
+      </a> ${t('translation.help_and')} 
+      <a 
+        href="https://github.com/Toribrrs" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style="color: #0000FF; text-decoration: underline;"
+      >
+        Toribrrs
+      </a>.
+    </p>
+    <br>
+    ${linkHtml}
+  `, [t, linkHtml]);
+
+  const lambdaText = t('translation.info_lambda');
+
+  const porderText = t('translation.info_porder');
+
+  const maxIterText = t('translation.info_max_iter');
+
+  const analysisText = t('translation.info_analysis_range');
+
   const infoTextMap = {
     lambda: lambdaText,
     pOrder: porderText,
@@ -141,9 +187,11 @@ const AnalysisForm = () => {
     }, [menuRef]);
 
   const handleLanguageSelect = (newLang) => {
-      setLanguage(newLang);
-      setIsMenuOpen(false);
-      // Aqui você adicionaria a lógica para trocar o idioma da aplicação
+    i18n.changeLanguage(newLang.toLowerCase())
+      .then(() => {
+        setIsMenuOpen(false);
+      })
+      .catch(err => console.error("Falha ao mudar o idioma:", err));
   };
 
   const handleAnalyze = async (event) => {
@@ -153,15 +201,15 @@ const AnalysisForm = () => {
       let errorMessage = '';
 
       if (!file) {
-          errorMessage = 'Por favor, selecione um arquivo CSV para análise.';
+          errorMessage = t('translation.error_select_file');
       } else if (!formData.compoundName) {
-          errorMessage = 'Por favor, insira o Nome do Composto.';
+          errorMessage = t('translation.error_compound_name');
       } else if (!formData.pOrder || formData.pOrder === '0') {
-          errorMessage = 'O Parâmetro P Order não pode ser zero ou vazio.';
+          errorMessage = t('translation.error_porder_zero');
       } else if (!formData.maxIterations || formData.maxIterations === '0') {
-          errorMessage = 'O Parâmetro Max Iterations não pode ser zero ou vazio.';
+          errorMessage = t('translation.error_maxiter_zero');
       } else if (!formData.lambda || formData.lambda === '0') {
-          errorMessage = 'O Parâmetro Lambda não pode ser zero ou vazio.';
+          errorMessage = t('translation.error_lambda_zero');
       }
 
       if (errorMessage) {
@@ -201,7 +249,6 @@ const AnalysisForm = () => {
           const analyzeResult = await analyzeResponse.json();
           console.log('Análise concluída com sucesso:', analyzeResult);
           
-          // 2. BUSCA OS DADOS DO RELATÓRIO PARA VISUALIZAÇÃO
           const reportResponse = await fetch(REPORT_API_URL);
 
           if (!reportResponse.ok) {
@@ -210,24 +257,20 @@ const AnalysisForm = () => {
 
           const reportData = await reportResponse.json();
           
-          // 3. ATUALIZA OS ESTADOS COM OS DADOS DO RELATÓRIO
           setFinalResult(reportData.final_result);
           setReportData(reportData);
           setSelectedKey(Object.keys(reportData.final_result)[0]);
           
-          // 4. MARCA A ANÁLISE COMO CONCLUÍDA
           setIsAnalysisComplete(true); 
 
       } catch (error) {
           console.error("Falha no processo de análise/relatório:", error.message);
           alert(`Erro na Análise: ${error.message}`);
           
-          // Em caso de erro, reverte os estados de visualização e conclusão
           setIsExpanded(false);
           setIsAnalysisComplete(false);
 
       } finally {
-          // 5. FINALIZA O CARREGAMENTO
           setLoading(false);
       }
   };
@@ -270,12 +313,21 @@ const AnalysisForm = () => {
           /* Largura base e transição */
           w-[35rem] 
           ${isExpanded ? '!w-[110rem]' : ''} 
-          
-          /* O divisor 'divide-x' não vai mais aqui, ele vai no contêiner do conteúdo */
       `}>
         <div className="title-bar">
-          <div className="logo">
-            {/* ... logo ... */}
+          <div className="logo"
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+          }}>
+            <img 
+              src={LogoImage} 
+              alt="logo-app"
+              style={{ height: 'auto', maxWidth: '15%' }} 
+            />
+            <p style={{ margin: 0, fontSize: '1.2em', fontWeight: 'bold', color: 'white' }}>
+              Spectral Nexus
+            </p>
           </div>
           <div className="title-bar-controls">
             <button 
@@ -299,16 +351,16 @@ const AnalysisForm = () => {
             ${isExpanded ? 'divide-x divide-gray-400' : 'divide-x-0'}
         `}>
           <div className="flex-none p-4 !w-[35rem] flex flex-col justify-between h-full">
-            <form onSubmit={handleSubmit} className="form-content">
+            <form onSubmit={handleSubmit} className="form-content flex flex-col justify-between h-full">
               <div className="space-y-14">
                 
-                <div className="file-upload-section w-full flex">
+                <div className="file-upload-section w-full flex items-center">
                   <button 
                       onClick={() => fileInputRef.current.click()}
                       disabled={isLoading} 
-                      className={isLoading ? 'opacity-50 cursor-not-allowed' : ''}
+                      className={`${isLoading ? 'opacity-50 cursor-not-allowed' : ''} mr-4`}
                   >
-                    Buscar...
+                    {t('translation.search_file')}
                   </button>
                   
                   <input
@@ -321,17 +373,17 @@ const AnalysisForm = () => {
                   />
                   
                   <span className="file-name-display flex-grow">
-                    {fileName || 'Nenhum arquivo escolhido'}
+                    {fileName || (t('translation.no_file_chosen'))}
                   </span>
                 </div>
 
-                <InputGroup label="Nome do Composto:" name="compoundName" showInfoIcon={false}>
+                <InputGroup label={t('translation.compound_name')} name="compoundName" showInfoIcon={false}>
                   <input
                     type="text"
                     name="compoundName"
                     value={formData.compoundName}
                     onChange={handleChange}
-                    placeholder="Nome"
+                    placeholder={t('translation.name_placeholder')}
                     className="w-full"
                   />
                 </InputGroup>
@@ -346,12 +398,12 @@ const AnalysisForm = () => {
                             onChange={handleChange}
                             className="w-auto"
                         />
-                        <label htmlFor="useParallelization">Usar paralelização</label>
+                        <label htmlFor="useParallelization">{t('translation.use_parallelization')}</label>
                     </div>
                     
                     {formData.useParallelization && (
                         <div className="flex items-center space-x-2">
-                            <label htmlFor="numCores">Núcleos:</label>
+                            <label htmlFor="numCores">{t('translation.cores')}</label>
                             <select
                                 id="numCores"
                                 value={formData.coreNumber || defaultOption} 
@@ -387,7 +439,7 @@ const AnalysisForm = () => {
                   </InputGroup>
                 ))}
 
-                <InputGroup label="Faixa de análise:" name="analysisRange" infoPopupText={analysisText}>
+                <InputGroup label={t('translation.analysis_range')} name="analysisRange" infoPopupText={analysisText}>
                   <div className="range-container">
                     <div 
                         className="current-value-floating"
@@ -425,7 +477,7 @@ const AnalysisForm = () => {
                       disabled={isLoading} 
                       className={isLoading ? 'opacity-50 cursor-not-allowed' : ''}
                   >
-                    Analisar →
+                    {t('translation.analyze_button')}
                   </button>
                 </div>
                 <div className="w-1/3 flex justify-end relative" ref={menuRef}>
@@ -434,7 +486,7 @@ const AnalysisForm = () => {
                         className="lang-button"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        {language} 
+                        {currentLanguageCode} 
                     </button>
 
                     {isMenuOpen && (
@@ -444,7 +496,7 @@ const AnalysisForm = () => {
                                 
                                 <li 
                                     className="menu-item" 
-                                    onClick={() => handleLanguageSelect('PT-BR')}
+                                    onClick={() => handleLanguageSelect('pt')}
                                 >
                                     <span className="font-bold mr-2">BR</span> Português (Brasil)
                                 </li>
@@ -453,7 +505,7 @@ const AnalysisForm = () => {
 
                                 <li 
                                     className="menu-item" 
-                                    onClick={() => handleLanguageSelect('EN-US')}
+                                    onClick={() => handleLanguageSelect('en')}
                                 >
                                     <span className="font-bold mr-2">US</span> English (American)
                                 </li>
@@ -466,10 +518,12 @@ const AnalysisForm = () => {
           </div>
 
           <div className={`flex-grow p-4 ${isExpanded ? 'block' : 'hidden'}`}>
-            <p className="text-gray-500">Visualização do Espectro FT-IR </p>
+            <p className="text-gray-500">{t('translation.analysis_view_title')}</p>
 
             {isAnalysisComplete ? (
                 <>
+                <div className="flex-grow p-4 flex flex-col items-center">
+                  <div className="space-y-5 w-full">
                     <div className="flex justify-center">
                       <select 
                         value={selectedKey || ''} 
@@ -486,19 +540,27 @@ const AnalysisForm = () => {
                     <h3 className="text-base text-center">
                         {selectedKey}: {(finalResult[selectedKey] || 0).toFixed(2)}%
                     </h3>
-                    
-                    <InteractiveGraph 
-                      selectedCompound={selectedKey}
-                      selectedInput={selectedInput}
-                      componentData={selectedComponentData} 
-                      inputListData={selectedInputListData}
-                      componentSpectra={selectedComponentSpectra}
-                      inputSpectra={selectedInputListSpectra}
-                    />
+
+
+                    <div 
+                        className="window"
+                        
+                      >
+                      <InteractiveGraph 
+                        selectedCompound={selectedKey}
+                        selectedInput={selectedInput}
+                        componentData={selectedComponentData} 
+                        inputListData={selectedInputListData}
+                        componentSpectra={selectedComponentSpectra}
+                        inputSpectra={selectedInputListSpectra}
+                      />
+                    </div>
 
                     <div className="flex justify-center">
-                      <button onClick={handleReportDownload} disabled={isLoading} className={isLoading ? 'opacity-50 cursor-not-allowed' : ''}>Download Relatório</button>
+                      <button onClick={handleReportDownload} disabled={isLoading} className={isLoading ? 'opacity-50 cursor-not-allowed' : ''}>{t('translation.download_report')}</button>
                     </div>
+                  </div>
+                </div>
                 </>
             ) : (
                 <div style={{textAlign: 'center'}}>
@@ -511,7 +573,7 @@ const AnalysisForm = () => {
                             />
                         </>
                     ) : (
-                        <p>Clique em "Analisar" para carregar o gráfico.</p>
+                        <p>{t('translation.loading_message')}</p>
                     )}
                 </div>
             )}

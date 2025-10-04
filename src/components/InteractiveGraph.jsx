@@ -1,7 +1,10 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import { useTranslation } from 'react-i18next';
 
 const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inputListData, componentSpectra, inputSpectra }) => {
+  const { t, i18n } = useTranslation("global");
+
   const filterData = (data) => {
     const xValues = Object.values(data.x);
     const yValues = Object.values(data.y);
@@ -27,7 +30,7 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
           type: 'scatter',
           mode: 'lines',
           line: { color: 'black' },
-          name: `Espectro de ${selectedInput}`
+          name: `${t("translation.spectra_of")}${selectedInput}`
         },
         {
           x: filteredComponentSpectra.x,
@@ -35,7 +38,7 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
           type: 'scatter',
           mode: 'lines',
           line: { color: 'red' },
-          name: `Espectro de ${selectedCompound}`
+          name: `${t("translation.spectra_of")}${selectedCompound}`
         },
         {
           x: filteredInputListData.x,
@@ -43,7 +46,7 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
           type: 'scatter',
           mode: 'markers',
           marker: { color: 'orange' },
-          name: `Dados de ${selectedInput}`
+          name: `${t("translation.data_of")}${selectedInput}`
         },
         {
           x: filteredComponentData.x,
@@ -51,12 +54,10 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
           type: 'scatter',
           mode: 'markers',
           marker: { color: 'blue' },
-          name: `Dados de ${selectedCompound}`
+          name: `${t("translation.data_of")}${selectedCompound}`
         }
       ]}
       layout={{
-        width: 1100,
-        height: 500,
         xaxis: {
           title: 'Número de onda (cm⁻¹)',
           range: [4000, 400],
@@ -82,11 +83,18 @@ const InteractiveGraph = ({ selectedCompound, selectedInput, componentData, inpu
           }
         },
         margin: {
-          l: 40,
+          l: 20,
           r: 20,
-          t: 40,
-          b: 40
+          t: 20,
+          b: 20
         }
+      }}
+
+      useResizeHandler={true} 
+
+      style={{ 
+          width: '100%', 
+          height: '100%',
       }}
     />
   );
