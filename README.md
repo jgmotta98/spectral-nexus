@@ -17,7 +17,14 @@
 
 A tool for identifying chemical compounds through weighted analysis of FT-IR spectra. It compares user-supplied spectral data with a reference database and returns a `*.pdf` report of the five most similar compounds.
 
-![spectral-nexus-use](https://github.com/user-attachments/assets/de50e3a8-7345-44bb-9391-f30f8062fe8a)
+
+<div align="center">
+    <img 
+        src="https://github.com/user-attachments/assets/100d03ce-03cc-40cf-9ab3-5bfeeb66cf26" 
+        alt="spectral-nexus-cropped" 
+        />
+</div>
+
 
 ## Instalation
 
