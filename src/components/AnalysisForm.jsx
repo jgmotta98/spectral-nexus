@@ -283,9 +283,13 @@ const AnalysisForm = () => {
   const calculateSliderPosition = (value, min, max) => {
     const range = max - min;
     const offsetValue = value - min;
-    const percentage = (offsetValue / range);
+    let percentage = (offsetValue / range) * 100;
 
-    return `calc(${percentage * 100}%)`;
+    const correctionRange = 93.5;
+    const startOffset = 3;
+
+    let correctedPercentage = (percentage * correctionRange / 100) + startOffset;
+    return `${correctedPercentage}%`; 
   };
 
   const handleReportDownload = async () => {
@@ -443,8 +447,8 @@ const AnalysisForm = () => {
                   <div className="range-container">
                     <div 
                         className="current-value-floating"
-                        style={{ 
-                            left: calculateSliderPosition(formData.analysisRange, 10, 40) 
+                        style={{
+                            left: calculateSliderPosition(formData.analysisRange, 10, 40)
                         }}
                     >
                         {formData.analysisRange}
