@@ -17,29 +17,28 @@ The workflow is simple:
 
 The web app consists of the following main sections:
 
-- **Home**: Upload your FT-IR spectrum file (`.csv`) and configure processing options before analysis.
-- **Reports** _(Relatórios)_: View and download results in a comprehensive `PDF` format.
+- Upload your FT-IR spectrum file (`.csv`) and configure processing options before analysis.
+- View and download results in a comprehensive `PDF` format.
 
 ---
 
 ## Uploading Data
 
-1. Go to the **Home** page.
+1. Click on the **Browse...** _(Buscar...)_ button.
 2. Choose your `.csv` file containing the FT-IR data.
 3. Click on **Choose file** _(Escolher arquivo)_ to submit it.
-4. 
 
 > 💡 The `.csv` must have two columns: **Wavenumber (x)** and **Absorbance (y)**.
 
 ---
 
-## Advanced Configurations
+## Configurations
 
-For greater control over the analysis, **Spectral Nexus** offers several advanced configuration options designed to optimize performance and improve the quality of spectral processing.
+For greater control over the analysis, **Spectral Nexus** offers several configuration options designed to optimize performance and improve the quality of processing.
 
 ### Parallel Processing
 
-- You can enable **multi-core processing** to accelerate computations by leveraging multiple CPU cores — ideal for large datasets or batch processing.
+- You can enable **multi-core processing** to accelerate computations by leveraging multiple CPU cores.
 
 ### Custom Analysis Range
 
@@ -69,12 +68,7 @@ A band is considered relevant if it has the highest **relative transmittance** w
 
 ## Downloading Report
 
-Once the analysis is complete, you can generate a detailed PDF report with your results.
-
-### Steps
-
-1. Navigate to the **Reports** tab.
-2. Click **Download Report** _(Download Relatório)_ to export the results.
+Once the analysis is complete, you can generate a detailed PDF report with your results. Just click **Download Report** _(Download Relatório)_ to export the results.
 
 ### Report Contents
 
@@ -96,7 +90,6 @@ The generated PDF includes:
 ## Tips & Troubleshooting
 
 - Ensure your uploaded `.csv` is correctly formatted.
-- The "**Reports**" tab is only enabled after a successful analysis.
 - If no matches are found, the compound may not exist in the reference database, or the resolution of the uploaded FT-IR spectrum may differ significantly from the database spectra.
 
 ---

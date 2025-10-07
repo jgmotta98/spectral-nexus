@@ -8,7 +8,7 @@
 
 ---
 
-**Spectral Nexus** is an interactive tool for identifying chemical compounds based on the weighted analysis of FT-IR (Fourier-Transform Infrared) spectra. Designed with accessibility and precision in mind, the platform streamlines spectral analysis, making it easier for users—researchers, students, and professionals alike—to identify pesticide compounds through spectral matching and classification.
+**Spectral Nexus** is an interactive tool for identifying chemical compounds based on the weighted analysis of FT-IR (Fourier-Transform Infrared) spectra. Designed with accessibility and precision in mind, the platform streamlines spectral analysis, making it easier for users to identify pesticide compounds through matching and classification.
 
 ---
 

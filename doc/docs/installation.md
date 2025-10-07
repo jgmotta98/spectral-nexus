@@ -29,15 +29,15 @@ Create and activate a virtual environment:
 === "Windows"
 
     ```bash
-    python -m venv venv
-    venv\Scripts\activate
+    python -m venv .venv
+    .venv\Scripts\activate
     ```
 
 === "Linux/macOS"
 
     ```bash
-    python3 -m venv venv
-    source venv/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
     ```
 
 ---
@@ -54,23 +54,7 @@ pip install -r requirements.txt
 
 ## Running on Windows
 
-To start both the backend and frontend servers simultaneously on Windows, simply run the provided batch file:
+To start both the backend, frontend and documentation servers simultaneously on Windows, simply run the provided batch file:
 ```bash
 ./run_servers.bat
-```
-
----
-
-## Running on macOS / Linux
-
-Give the `.sh` file execute permission:
-
-```bash
-chmod +x run_servers.sh
-```
-
-Then run it:
-
-```bash
-./run_servers.sh
 ```
