@@ -374,15 +374,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#running-on-macos-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running on macOS / Linux
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -506,15 +497,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#running-on-macos-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running on macOS / Linux
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -555,13 +537,13 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux/macOS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </span></code></pre></div>
 </div>
 </div>
@@ -573,17 +555,9 @@
 </span></code></pre></div>
 <hr />
 <h2 id="running-on-windows">Running on Windows</h2>
-<p>To start both the backend and frontend servers simultaneously on Windows, simply run the provided batch file:
+<p>To start both the backend, frontend and documentation servers simultaneously on Windows, simply run the provided batch file:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./run_servers.bat
 </span></code></pre></div></p>
-<hr />
-<h2 id="running-on-macos-linux">Running on macOS / Linux</h2>
-<p>Give the <code>.sh</code> file execute permission:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>run_servers.sh
-</span></code></pre></div>
-<p>Then run it:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./run_servers.sh
-</span></code></pre></div>
 
 
 
