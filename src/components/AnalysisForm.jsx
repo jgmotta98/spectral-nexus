@@ -42,6 +42,21 @@ const AnalysisForm = () => {
         ${t('translation.help_tcc_link')}
       </a>
     </p>
+
+    <br>
+
+    <p>
+      ${t('translation.of_documentation')}
+      <br>
+      <a 
+        href="http://127.0.0.1:8080/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style="color: #0000FF; text-decoration: underline;"
+      >
+        ${t('translation.spectral_nexus_documentation')}
+      </a>
+    </p>
   `, [t]);
 
   const helpText = useMemo(() => `

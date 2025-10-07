@@ -26,6 +26,8 @@
     "help_publications": "Publications:",
     "help_tcc_link": "Undergraduate Thesis",
     "spectra_of": "Spectrum of ",
-    "data_of": "Data of "
+    "data_of": "Data of ",
+    "of_documentation": "Oficial Documentation: ",
+    "spectral_nexus_documentation": "Spectral Nexus Documentation"
   }
 }

@@ -26,6 +26,8 @@
     "help_publications": "Publicações:",
     "help_tcc_link": "Trabalho de Conclusão de Curso",
     "spectra_of": "Espectro de ",
-    "data_of": "Dados de "
+    "data_of": "Dados de ",
+    "of_documentation": "Documentação Oficial: ",
+    "spectral_nexus_documentation": "Documentação Spectral Nexus"
   }
 }
